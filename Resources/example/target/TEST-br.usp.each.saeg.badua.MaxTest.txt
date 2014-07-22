@@ -1,0 +1,191 @@
+Testsuite: br.usp.each.saeg.badua.MaxTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,025 sec
+------------- Standard Output ---------------
+Class: br/usp/each/saeg/badua/MaxTest
+Class: junit/framework/TestCase
+class junit/framework/TestCase should be compiled with java 6 or newer
+Class: junit/framework/Assert
+class junit/framework/Assert should be compiled with java 6 or newer
+Class: org/apache/tools/ant/taskdefs/optional/junit/CustomJUnit4TestAdapterCache
+class org/apache/tools/ant/taskdefs/optional/junit/CustomJUnit4TestAdapterCache should be compiled with java 6 or newer
+Class: junit/framework/JUnit4TestAdapterCache
+class junit/framework/JUnit4TestAdapterCache should be compiled with java 6 or newer
+Class: org/junit/runner/notification/RunListener
+class org/junit/runner/notification/RunListener should be compiled with java 6 or newer
+Class: junit/framework/JUnit4TestAdapterCache$1
+class junit/framework/JUnit4TestAdapterCache$1 should be compiled with java 6 or newer
+Class: org/apache/tools/ant/taskdefs/optional/junit/CustomJUnit4TestAdapterCache$1
+class org/apache/tools/ant/taskdefs/optional/junit/CustomJUnit4TestAdapterCache$1 should be compiled with java 6 or newer
+Class: junit/framework/JUnit4TestAdapter
+class junit/framework/JUnit4TestAdapter should be compiled with java 6 or newer
+Class: org/junit/runner/manipulation/Filterable
+class org/junit/runner/manipulation/Filterable should be compiled with java 6 or newer
+Class: org/junit/runner/manipulation/Sortable
+class org/junit/runner/manipulation/Sortable should be compiled with java 6 or newer
+Class: org/junit/runner/Describable
+class org/junit/runner/Describable should be compiled with java 6 or newer
+Class: org/junit/runner/notification/RunNotifier
+class org/junit/runner/notification/RunNotifier should be compiled with java 6 or newer
+Class: org/junit/runner/Request
+class org/junit/runner/Request should be compiled with java 6 or newer
+Class: org/junit/internal/requests/ClassRequest
+class org/junit/internal/requests/ClassRequest should be compiled with java 6 or newer
+Class: org/junit/internal/requests/SortingRequest
+class org/junit/internal/requests/SortingRequest should be compiled with java 6 or newer
+Class: org/junit/internal/requests/FilterRequest
+class org/junit/internal/requests/FilterRequest should be compiled with java 6 or newer
+Class: org/junit/runner/Runner
+class org/junit/runner/Runner should be compiled with java 6 or newer
+Class: org/junit/internal/runners/ErrorReportingRunner
+class org/junit/internal/runners/ErrorReportingRunner should be compiled with java 6 or newer
+Class: org/junit/runner/Request$1
+class org/junit/runner/Request$1 should be compiled with java 6 or newer
+Class: org/junit/runners/model/InitializationError
+class org/junit/runners/model/InitializationError should be compiled with java 6 or newer
+Class: org/junit/runners/model/RunnerBuilder
+class org/junit/runners/model/RunnerBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/AllDefaultPossibilitiesBuilder
+class org/junit/internal/builders/AllDefaultPossibilitiesBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/SuiteMethodBuilder
+class org/junit/internal/builders/SuiteMethodBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/NullBuilder
+class org/junit/internal/builders/NullBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/IgnoredBuilder
+class org/junit/internal/builders/IgnoredBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/IgnoredClassRunner
+class org/junit/internal/builders/IgnoredClassRunner should be compiled with java 6 or newer
+Class: org/junit/internal/builders/AnnotatedBuilder
+class org/junit/internal/builders/AnnotatedBuilder should be compiled with java 6 or newer
+Class: org/junit/internal/builders/JUnit3Builder
+class org/junit/internal/builders/JUnit3Builder should be compiled with java 6 or newer
+Class: org/junit/internal/runners/JUnit38ClassRunner
+class org/junit/internal/runners/JUnit38ClassRunner should be compiled with java 6 or newer
+Class: org/junit/internal/builders/JUnit4Builder
+class org/junit/internal/builders/JUnit4Builder should be compiled with java 6 or newer
+Class: org/junit/runners/BlockJUnit4ClassRunner
+class org/junit/runners/BlockJUnit4ClassRunner should be compiled with java 6 or newer
+Class: org/junit/runners/ParentRunner
+class org/junit/runners/ParentRunner should be compiled with java 6 or newer
+Class: org/junit/Ignore
+class org/junit/Ignore should be compiled with java 6 or newer
+Class: org/junit/runner/RunWith
+class org/junit/runner/RunWith should be compiled with java 6 or newer
+Class: org/junit/runners/model/Statement
+class org/junit/runners/model/Statement should be compiled with java 6 or newer
+Class: org/junit/runners/ParentRunner$2
+class org/junit/runners/ParentRunner$2 should be compiled with java 6 or newer
+Class: org/junit/rules/RunRules
+class org/junit/rules/RunRules should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/RunAfters
+class org/junit/internal/runners/statements/RunAfters should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/RunBefores
+class org/junit/internal/runners/statements/RunBefores should be compiled with java 6 or newer
+Class: org/junit/internal/AssumptionViolatedException
+class org/junit/internal/AssumptionViolatedException should be compiled with java 6 or newer
+Class: org/hamcrest/SelfDescribing
+class org/hamcrest/SelfDescribing should be compiled with java 6 or newer
+Class: org/junit/runner/manipulation/NoTestsRemainException
+class org/junit/runner/manipulation/NoTestsRemainException should be compiled with java 6 or newer
+Class: org/junit/runner/notification/StoppedByUserException
+class org/junit/runner/notification/StoppedByUserException should be compiled with java 6 or newer
+Class: org/junit/runners/model/RunnerScheduler
+class org/junit/runners/model/RunnerScheduler should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/FailOnTimeout
+class org/junit/internal/runners/statements/FailOnTimeout should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/ExpectException
+class org/junit/internal/runners/statements/ExpectException should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/InvokeMethod
+class org/junit/internal/runners/statements/InvokeMethod should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/Fail
+class org/junit/internal/runners/statements/Fail should be compiled with java 6 or newer
+Class: org/junit/runner/manipulation/Sorter
+class org/junit/runner/manipulation/Sorter should be compiled with java 6 or newer
+Class: org/junit/runner/manipulation/Sorter$1
+class org/junit/runner/manipulation/Sorter$1 should be compiled with java 6 or newer
+Class: org/junit/runners/ParentRunner$1
+class org/junit/runners/ParentRunner$1 should be compiled with java 6 or newer
+Class: org/junit/runners/model/TestClass
+class org/junit/runners/model/TestClass should be compiled with java 6 or newer
+Class: org/junit/runners/model/FrameworkMember
+class org/junit/runners/model/FrameworkMember should be compiled with java 6 or newer
+Class: org/junit/runners/model/FrameworkMethod
+class org/junit/runners/model/FrameworkMethod should be compiled with java 6 or newer
+Class: org/junit/runners/model/FrameworkField
+class org/junit/runners/model/FrameworkField should be compiled with java 6 or newer
+Class: org/junit/internal/MethodSorter
+class org/junit/internal/MethodSorter should be compiled with java 6 or newer
+Class: org/junit/internal/MethodSorter$1
+class org/junit/internal/MethodSorter$1 should be compiled with java 6 or newer
+Class: org/junit/internal/MethodSorter$2
+class org/junit/internal/MethodSorter$2 should be compiled with java 6 or newer
+Class: org/junit/FixMethodOrder
+class org/junit/FixMethodOrder should be compiled with java 6 or newer
+Class: org/junit/Test
+class org/junit/Test should be compiled with java 6 or newer
+Class: org/junit/Test$None
+class org/junit/Test$None should be compiled with java 6 or newer
+Class: com/sun/proxy/$Proxy3
+class com/sun/proxy/$Proxy3 should be compiled with java 6 or newer
+Class: org/junit/Before
+class org/junit/Before should be compiled with java 6 or newer
+Class: org/junit/BeforeClass
+class org/junit/BeforeClass should be compiled with java 6 or newer
+Class: org/junit/AfterClass
+class org/junit/AfterClass should be compiled with java 6 or newer
+Class: org/junit/internal/runners/rules/RuleFieldValidator
+class org/junit/internal/runners/rules/RuleFieldValidator should be compiled with java 6 or newer
+Class: org/junit/ClassRule
+class org/junit/ClassRule should be compiled with java 6 or newer
+Class: org/junit/Rule
+class org/junit/Rule should be compiled with java 6 or newer
+Class: org/junit/Assert
+class org/junit/Assert should be compiled with java 6 or newer
+Class: org/junit/ComparisonFailure
+class org/junit/ComparisonFailure should be compiled with java 6 or newer
+Class: org/junit/After
+class org/junit/After should be compiled with java 6 or newer
+Class: org/apache/tools/ant/util/StringUtils
+class org/apache/tools/ant/util/StringUtils should be compiled with java 6 or newer
+Class: org/junit/runner/Description
+class org/junit/runner/Description should be compiled with java 6 or newer
+Class: org/junit/internal/runners/model/EachTestNotifier
+class org/junit/internal/runners/model/EachTestNotifier should be compiled with java 6 or newer
+Class: org/junit/rules/TestRule
+class org/junit/rules/TestRule should be compiled with java 6 or newer
+Class: org/junit/runners/ParentRunner$3
+class org/junit/runners/ParentRunner$3 should be compiled with java 6 or newer
+Class: org/junit/runners/BlockJUnit4ClassRunner$1
+class org/junit/runners/BlockJUnit4ClassRunner$1 should be compiled with java 6 or newer
+Class: org/junit/internal/runners/model/ReflectiveCallable
+class org/junit/internal/runners/model/ReflectiveCallable should be compiled with java 6 or newer
+Class: org/junit/rules/MethodRule
+class org/junit/rules/MethodRule should be compiled with java 6 or newer
+Class: org/junit/runner/notification/RunNotifier$3
+class org/junit/runner/notification/RunNotifier$3 should be compiled with java 6 or newer
+Class: org/junit/runner/notification/RunNotifier$SafeNotifier
+class org/junit/runner/notification/RunNotifier$SafeNotifier should be compiled with java 6 or newer
+Class: junit/framework/JUnit4TestCaseFacade
+class junit/framework/JUnit4TestCaseFacade should be compiled with java 6 or newer
+Class: org/apache/tools/ant/taskdefs/optional/junit/JUnitVersionHelper
+class org/apache/tools/ant/taskdefs/optional/junit/JUnitVersionHelper should be compiled with java 6 or newer
+Class: junit/framework/ComparisonFailure
+class junit/framework/ComparisonFailure should be compiled with java 6 or newer
+Class: org/junit/runners/model/FrameworkMethod$1
+class org/junit/runners/model/FrameworkMethod$1 should be compiled with java 6 or newer
+Class: br/usp/each/saeg/badua/Max
+DFAgent.getInstance()
+DFAgent()
+Class: br/usp/each/saeg/badua/core/runtime/RuntimeData
+class br/usp/each/saeg/badua/core/runtime/RuntimeData should be compiled with java 6 or newer
+RuntimeData.runtimedata - badua
+ShutdownHoot.register()
+DFAgent.getData()
+DFRT!
+DFRT.getData(br/usp/each/saeg/badua/Max , 1)
+RuntimeData.getExecutionData()br/usp/each/saeg/badua/Max
+Class: org/junit/runner/notification/RunNotifier$7
+class org/junit/runner/notification/RunNotifier$7 should be compiled with java 6 or newer
+------------- ---------------- ---------------
+
+Testcase: test took 0,016 sec
+Testcase: test2 took 0 sec
