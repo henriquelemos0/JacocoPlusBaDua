@@ -15,6 +15,11 @@
       <version>4.8.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>br.usp.each.saeg</groupId>
+      <artifactId>jaguar</artifactId>
+      <version>0.0.5-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 
 

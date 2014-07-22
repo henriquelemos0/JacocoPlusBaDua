@@ -1,5 +1,5 @@
 Testsuite: br.usp.each.saeg.badua.MaxTest
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,025 sec
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0,045 sec
 ------------- Standard Output ---------------
 Class: br/usp/each/saeg/badua/MaxTest
 Class: junit/framework/TestCase
@@ -28,8 +28,6 @@ Class: org/junit/runner/notification/RunNotifier
 class org/junit/runner/notification/RunNotifier should be compiled with java 6 or newer
 Class: org/junit/runner/Request
 class org/junit/runner/Request should be compiled with java 6 or newer
-Class: org/junit/internal/requests/ClassRequest
-class org/junit/internal/requests/ClassRequest should be compiled with java 6 or newer
 Class: org/junit/internal/requests/SortingRequest
 class org/junit/internal/requests/SortingRequest should be compiled with java 6 or newer
 Class: org/junit/internal/requests/FilterRequest
@@ -38,6 +36,8 @@ Class: org/junit/runner/Runner
 class org/junit/runner/Runner should be compiled with java 6 or newer
 Class: org/junit/internal/runners/ErrorReportingRunner
 class org/junit/internal/runners/ErrorReportingRunner should be compiled with java 6 or newer
+Class: org/junit/internal/requests/ClassRequest
+class org/junit/internal/requests/ClassRequest should be compiled with java 6 or newer
 Class: org/junit/runner/Request$1
 class org/junit/runner/Request$1 should be compiled with java 6 or newer
 Class: org/junit/runners/model/InitializationError
@@ -70,6 +70,10 @@ Class: org/junit/Ignore
 class org/junit/Ignore should be compiled with java 6 or newer
 Class: org/junit/runner/RunWith
 class org/junit/runner/RunWith should be compiled with java 6 or newer
+Class: org/junit/internal/AssumptionViolatedException
+class org/junit/internal/AssumptionViolatedException should be compiled with java 6 or newer
+Class: org/hamcrest/SelfDescribing
+class org/hamcrest/SelfDescribing should be compiled with java 6 or newer
 Class: org/junit/runners/model/Statement
 class org/junit/runners/model/Statement should be compiled with java 6 or newer
 Class: org/junit/runners/ParentRunner$2
@@ -80,24 +84,20 @@ Class: org/junit/internal/runners/statements/RunAfters
 class org/junit/internal/runners/statements/RunAfters should be compiled with java 6 or newer
 Class: org/junit/internal/runners/statements/RunBefores
 class org/junit/internal/runners/statements/RunBefores should be compiled with java 6 or newer
-Class: org/junit/internal/AssumptionViolatedException
-class org/junit/internal/AssumptionViolatedException should be compiled with java 6 or newer
-Class: org/hamcrest/SelfDescribing
-class org/hamcrest/SelfDescribing should be compiled with java 6 or newer
 Class: org/junit/runner/manipulation/NoTestsRemainException
 class org/junit/runner/manipulation/NoTestsRemainException should be compiled with java 6 or newer
 Class: org/junit/runner/notification/StoppedByUserException
 class org/junit/runner/notification/StoppedByUserException should be compiled with java 6 or newer
 Class: org/junit/runners/model/RunnerScheduler
 class org/junit/runners/model/RunnerScheduler should be compiled with java 6 or newer
-Class: org/junit/internal/runners/statements/FailOnTimeout
-class org/junit/internal/runners/statements/FailOnTimeout should be compiled with java 6 or newer
-Class: org/junit/internal/runners/statements/ExpectException
-class org/junit/internal/runners/statements/ExpectException should be compiled with java 6 or newer
 Class: org/junit/internal/runners/statements/InvokeMethod
 class org/junit/internal/runners/statements/InvokeMethod should be compiled with java 6 or newer
 Class: org/junit/internal/runners/statements/Fail
 class org/junit/internal/runners/statements/Fail should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/FailOnTimeout
+class org/junit/internal/runners/statements/FailOnTimeout should be compiled with java 6 or newer
+Class: org/junit/internal/runners/statements/ExpectException
+class org/junit/internal/runners/statements/ExpectException should be compiled with java 6 or newer
 Class: org/junit/runner/manipulation/Sorter
 class org/junit/runner/manipulation/Sorter should be compiled with java 6 or newer
 Class: org/junit/runner/manipulation/Sorter$1
@@ -187,5 +187,5 @@ Class: org/junit/runner/notification/RunNotifier$7
 class org/junit/runner/notification/RunNotifier$7 should be compiled with java 6 or newer
 ------------- ---------------- ---------------
 
-Testcase: test took 0,016 sec
+Testcase: test took 0,025 sec
 Testcase: test2 took 0 sec
