@@ -1,6 +1,7 @@
 /target
 
 .classpath
-
+/codeforest.xml
+/jacoco.exec
 .settings/
 .project

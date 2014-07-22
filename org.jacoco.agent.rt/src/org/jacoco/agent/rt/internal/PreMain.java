@@ -39,7 +39,7 @@ public final class PreMain {
 	 */
 	public static void premain(final String options, final Instrumentation inst)
 			throws Exception {
-		System.out.println("Premain.premain(opt,inst)2");
+		System.out.println("Premain.premain(opt,inst)");
 		final AgentOptions agentOptions = new AgentOptions(options);// pega os
 		System.out.println("dataFlow = " + agentOptions.getDataflow());
 		// parametros
