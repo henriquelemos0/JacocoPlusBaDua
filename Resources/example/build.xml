@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="Ant-Test" default="test" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
   <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
-        <classpath path="C:\Users\unknown\workspace\kepler\java\JacocoPlusBaDua\jacoco\target\jacocoant.jar" />
+        <classpath path="/home/louiz/workspace-jacoco/jacoco-0.7.1/jacoco/target/jacocoant.jar" />
   </taskdef>
   <!-- Sets variables which can later be used. -->
   <!-- The value of a property is accessed via ${} -->
@@ -65,7 +65,7 @@
         </batchtest>
       </junit>
     </jacoco:coverage>
-    <java jar="C:\Users\unknown\workspace\kepler\java\JacocoPlusBaDua\Resources\org.jacoco.dataflow-0.0.3-all.jar" fork="true">
+    <java jar="/home/louiz/workspace-jacoco/jacoco-0.7.1/Resources/org.jacoco.dataflow-0.0.3-all.jar" fork="true">
       <arg value="report"/>
       <arg value="--all"/>
       <arg value="-classes"/>
