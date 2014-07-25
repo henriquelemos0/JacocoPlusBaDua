@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -27,7 +28,7 @@ public final class InstrSupport {
 		// No instances
 	}
 
-	public static final String RUNTIME_OWNER = "org/jacoco/agent/rt/internal_77fdcf7/DFRT";
+	public static final String RUNTIME_OWNER = "org/jacoco/agent/rt/internal_8878187/DFRT";
 
 	public static final String RUNTIME_NAME = "getData";
 
@@ -55,17 +56,19 @@ public final class InstrSupport {
 	// --- Initialization Method
 
 	/**
-	 * Name of the initialization method.
+	 * Name of the method that returns data-flow coverage field of a class.
 	 */
-	public static final String INITMETHOD_NAME = "$initData";
+	public static final String INITMETHOD_NAME = "$getData";
 
 	/**
-	 * Descriptor of the initialization method.
+	 * Descriptor of the method that returns data-flow coverage field of a
+	 * class.
 	 */
 	public static final String INITMETHOD_DESC = "()[J";
 
 	/**
-	 * Access modifiers of the initialization method.
+	 * Access modifiers of the method that returns data-flow coverage field of a
+	 * class.
 	 */
 	public static final int INITMETHOD_ACC = Opcodes.ACC_SYNTHETIC
 			| Opcodes.ACC_PRIVATE | Opcodes.ACC_STATIC | Opcodes.ACC_FINAL;

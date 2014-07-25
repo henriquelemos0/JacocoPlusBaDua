@@ -12,23 +12,30 @@
  *******************************************************************************/
 package br.usp.each.saeg.badua.core.internal.instr;
 
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.MethodNode;
 
-public class MethodTransformer {
+public final class IntegerRootProbe extends Probe {
 
-	protected MethodTransformer mt;
-
-	public MethodTransformer() {
-		this.mt = null;
+	public IntegerRootProbe(final MethodNode methodNode) {
+		super(methodNode);
 	}
 
-	public MethodTransformer(final MethodTransformer mt) {
-		this.mt = mt;
+	@Override
+	public int getType() {
+		return BA_INT_ROOT_PROBE;
 	}
 
-	public void transform(final MethodNode methodNode) {
-		if (mt != null) {
-			mt.transform(methodNode);
+	@Override
+	public void accept(final MethodVisitor mv) {
+		if (born != 0) {
+			InstrSupport.push(mv, (int) born);
+			mv.visitVarInsn(Opcodes.ISTORE, vAlive);
+		}
+		if (sleepy != 0) {
+			InstrSupport.push(mv, ~(int) sleepy);
+			mv.visitVarInsn(Opcodes.ISTORE, vSleepy);
 		}
 	}
 

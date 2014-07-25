@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -39,25 +40,39 @@ public class LabelFrameNode extends LabelNode {
 	public static void insertBefore(final AbstractInsnNode location,
 			final InsnList insns, final InsnList insert) {
 
+		final LabelFrameNode lfn = create(location);
+		if (lfn != null) {
+			insert.add(lfn);
+		}
+		insns.insertBefore(location, insert);
+	}
+
+	public static void insertBefore(final AbstractInsnNode location,
+			final InsnList insns, final AbstractInsnNode insert) {
+
+		final LabelFrameNode lfn = create(location);
+		insns.insertBefore(location, insert);
+		if (lfn != null) {
+			insns.insertBefore(location, lfn);
+		}
+	}
+
+	private static LabelFrameNode create(final AbstractInsnNode location) {
 		AbstractInsnNode insn = location.getPrevious();
+		if (insn == null) {
+			return null;
+		}
 		while (true) {
 			switch (insn.getType()) {
 			case AbstractInsnNode.LABEL:
-				final LabelFrameNode lfn = (LabelFrameNode) insn;
-				final LabelFrameNode label = create(lfn);
-				if (label != null) {
-					insert.add(label);
-				}
-				break;
+				return create((LabelFrameNode) insn);
 			case AbstractInsnNode.FRAME:
 			case AbstractInsnNode.LINE:
 				insn = insn.getPrevious();
 				continue;
 			default:
-				break;
+				return null;
 			}
-			insns.insertBefore(location, insert);
-			return;
 		}
 	}
 
@@ -78,12 +93,14 @@ public class LabelFrameNode extends LabelNode {
 					changed = true;
 				}
 			}
+			label.addFrameNode(frame);
 		}
 
 		if (!changed) {
 			return null;
 		}
 
+		lfn.frames.clear();
 		return label;
 	}
 

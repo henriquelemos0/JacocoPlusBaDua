@@ -65,9 +65,9 @@
         </batchtest>
       </junit>
     </jacoco:coverage>
-    <java jar="/home/louiz/workspace-jacoco/jacoco-0.7.1/Resources/org.jacoco.dataflow-0.0.3-all.jar" fork="true">
+    <java jar="/home/louiz/workspace-jacoco/jacoco-0.7.1/Resources/ba-dua-0.0.4-all" fork="true">
       <arg value="report"/>
-      <arg value="--all"/>
+      <arg value="--sm"/>
       <arg value="-classes"/>
       <arg value="./target/classes/"/>
       <arg value="-input"/>

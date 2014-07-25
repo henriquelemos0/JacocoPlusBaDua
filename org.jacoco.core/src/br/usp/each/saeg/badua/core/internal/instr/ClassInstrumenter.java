@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,8 +18,6 @@ import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-import br.usp.each.saeg.badua.core.internal.instr.df.CoverageMethodTransformer;
-
 public class ClassInstrumenter extends ClassVisitor implements IdGenerator {
 
 	private String className;
@@ -32,18 +31,20 @@ public class ClassInstrumenter extends ClassVisitor implements IdGenerator {
 	private int classProbeCount;
 
 	public ClassInstrumenter(final ClassVisitor cv) {
-		super(Opcodes.ASM4, cv);
+		super(Opcodes.ASM5, cv);
 	}
 
 	@Override
 	public void visit(final int version, final int access, final String name,
 			final String signature, final String superName,
 			final String[] interfaces) {
+
 		methodProbeCount = 0;
 		classProbeCount = 0;
 		className = name;
 		withFrames = (version & 0xff) >= Opcodes.V1_6;
 		interfaceType = (access & Opcodes.ACC_INTERFACE) != 0;
+
 		super.visit(version, access, name, signature, superName, interfaces);
 	}
 
@@ -131,7 +132,7 @@ public class ClassInstrumenter extends ClassVisitor implements IdGenerator {
 		mv.visitLdcInsn(className);
 		InstrSupport.push(mv, classProbeCount);
 		mv.visitMethodInsn(Opcodes.INVOKESTATIC, InstrSupport.RUNTIME_OWNER,
-				InstrSupport.RUNTIME_NAME, InstrSupport.RUNTIME_DESC);
+				InstrSupport.RUNTIME_NAME, InstrSupport.RUNTIME_DESC, false);
 
 		// Stack[0]: [J
 
