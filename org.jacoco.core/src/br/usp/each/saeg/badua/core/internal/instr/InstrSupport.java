@@ -14,6 +14,7 @@ package br.usp.each.saeg.badua.core.internal.instr;
 
 import static java.lang.String.format;
 
+import org.jacoco.core.JaCoCo;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
@@ -28,7 +29,7 @@ public final class InstrSupport {
 		// No instances
 	}
 
-	public static final String RUNTIME_OWNER = "org/jacoco/agent/rt/internal_8878187/DFRT";
+	public static final String RUNTIME_OWNER = JaCoCo.RUNTIMEPACKAGE.replace('.', '/') + "/DFRT";
 
 	public static final String RUNTIME_NAME = "getData";
 
