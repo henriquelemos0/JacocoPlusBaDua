@@ -27,7 +27,7 @@ public final class InstrSupport {
 		// No instances
 	}
 
-	public static final String RUNTIME_OWNER = "org/jacoco/agent/rt/internal/DFRT";
+	public static final String RUNTIME_OWNER = "org/jacoco/agent/rt/internal_77fdcf7/DFRT";
 
 	public static final String RUNTIME_NAME = "getData";
 

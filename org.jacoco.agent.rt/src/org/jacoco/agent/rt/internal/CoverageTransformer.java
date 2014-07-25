@@ -93,7 +93,7 @@ public class CoverageTransformer implements ClassFileTransformer {
 
 		// verify the class major version, if is less then 1.5(49),not
 		// instrument
-		// System.out.println("Class: " + classname);
+		// System.out.println("Classsss: " + classname);
 
 		try {
 			classFileDumper.dump(classname, classfileBuffer);

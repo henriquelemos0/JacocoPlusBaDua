@@ -30,11 +30,14 @@ public class RuntimeData {
 				dataArray = new long[size];
 				data.put(className, dataArray);
 			}
+			final long[] result = data.get("br/usp/each/saeg/badua/Max");
+			System.out.println(result[0]);
 			return dataArray;
 		}
 	}
 
 	public Object getData() {
+		System.out.println("RuntimeData.getData()");
 		return new HashMap<String, long[]>(data);
 	}
 

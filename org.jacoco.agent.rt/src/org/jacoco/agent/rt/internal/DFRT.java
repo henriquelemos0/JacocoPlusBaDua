@@ -16,6 +16,7 @@ import br.usp.each.saeg.badua.core.runtime.RuntimeData;
 public final class DFRT {
 
 	private static RuntimeData DATA;
+
 	static {
 		DATA = DFAgent.getInstance().getData();
 		System.out.println("DFRT!");

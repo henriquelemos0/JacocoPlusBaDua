@@ -16,6 +16,6 @@ public class MaxTest {
 	
 	@Test
 	public void test3(){
-		assertEquals(Max.max(new int[]{4,2,3}, 3),4);
+		assertEquals(Max.max(new int[]{4,2,3}, 3),3);
 	}
 }
