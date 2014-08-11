@@ -31,6 +31,8 @@ public final class DFRT {
 
 	public static long[] getData(final String className, final int size) {
 		System.out.println("DFRT.getData(" + className + " , " + size + ")");
+		final long[] result = DATA.getExecutionData(className, size);
+		System.out.println("result: " + result[0]);
 		return DATA.getExecutionData(className, size);
 	}
 
