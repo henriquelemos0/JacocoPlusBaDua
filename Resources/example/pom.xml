@@ -18,7 +18,7 @@
     <dependency>
       <groupId>br.usp.each.saeg</groupId>
       <artifactId>jaguar</artifactId>
-      <version>0.0.5-SNAPSHOT</version>
+      <version>0.0.6-SNAPSHOT</version>
     </dependency>
   </dependencies>
 
