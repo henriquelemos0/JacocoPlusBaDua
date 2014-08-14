@@ -25,11 +25,11 @@ import java.net.UnknownHostException;
 import java.util.List;
 
 import org.jacoco.agent.rt.internal.ExceptionRecorder;
-import org.jacoco.agent.rt.internal.output.TcpServerOutput;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.core.data.SessionInfoStore;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.RemoteControlReader;
 import org.jacoco.core.runtime.RemoteControlWriter;
@@ -50,7 +50,7 @@ public class TcpServerOutputTest {
 
 	private TcpServerOutput controller;
 
-	private RuntimeData data;
+	private AbstractRuntimeData data;
 
 	@Before
 	public void setup() throws Exception {

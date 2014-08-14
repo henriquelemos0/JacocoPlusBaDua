@@ -23,6 +23,7 @@ import org.jacoco.core.analysis.ICounter;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.SessionInfoStore;
 import org.jacoco.core.instr.Instrumenter;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.IRuntime;
 import org.jacoco.core.runtime.LoggerRuntime;
 import org.jacoco.core.runtime.RuntimeData;
@@ -118,7 +119,7 @@ public final class CoreTutorial {
 
 		// Now we're ready to run our instrumented class and need to startup the
 		// runtime first:
-		final RuntimeData data = new RuntimeData();
+		final AbstractRuntimeData data = new RuntimeData();
 		runtime.startup(data);
 
 		// In this tutorial we use a special class loader to directly load the

@@ -90,7 +90,7 @@ public class ExecutionDataWriter implements ISessionInfoVisitor,
 		}
 	}
 
-	public void visitClassExecution(final ExecutionData data) {
+	public void visitClassExecution(final IExecutionData data) {
 		System.out.println("ExecutionDataWriter,visitClassExecution");
 		try {
 			out.writeByte(BLOCK_EXECUTIONDATA);

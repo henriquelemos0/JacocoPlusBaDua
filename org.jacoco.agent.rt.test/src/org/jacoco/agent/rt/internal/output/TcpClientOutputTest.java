@@ -21,11 +21,10 @@ import java.net.Socket;
 import java.util.List;
 
 import org.jacoco.agent.rt.internal.ExceptionRecorder;
-import org.jacoco.agent.rt.internal.output.IAgentOutput;
-import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.core.data.SessionInfoStore;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.RemoteControlReader;
 import org.jacoco.core.runtime.RemoteControlWriter;
@@ -48,7 +47,7 @@ public class TcpClientOutputTest {
 
 	private RemoteControlReader remoteReader;
 
-	private RuntimeData data;
+	private AbstractRuntimeData data;
 
 	@Before
 	public void setup() throws Exception {

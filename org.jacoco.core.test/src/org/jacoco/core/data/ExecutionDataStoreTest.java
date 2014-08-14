@@ -35,12 +35,12 @@ public class ExecutionDataStoreTest implements IExecutionDataVisitor {
 
 	private ExecutionDataStore store;
 
-	private Map<Long, ExecutionData> dataOutput;
+	private Map<Long, IExecutionData> dataOutput;
 
 	@Before
 	public void setup() {
 		store = new ExecutionDataStore();
-		dataOutput = new HashMap<Long, ExecutionData>();
+		dataOutput = new HashMap<Long, IExecutionData>();
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class ExecutionDataStoreTest implements IExecutionDataVisitor {
 	public void testPut() {
 		final boolean[] probes = new boolean[] { false, false, true };
 		store.put(new ExecutionData(1000, "Sample", probes));
-		final ExecutionData data = store.get(1000);
+		final IExecutionData data = store.get(1000);
 		assertSame(probes, data.getProbes());
 		assertTrue(store.contains("Sample"));
 		store.accept(this);
@@ -72,7 +72,7 @@ public class ExecutionDataStoreTest implements IExecutionDataVisitor {
 		store.put(aa);
 		final ExecutionData b = new ExecutionData(1001, "B", probes);
 		store.put(b);
-		final Set<ExecutionData> actual = new HashSet<ExecutionData>(
+		final Set<IExecutionData> actual = new HashSet<IExecutionData>(
 				store.getContents());
 		final Set<ExecutionData> expected = new HashSet<ExecutionData>(
 				Arrays.asList(a, b));
@@ -205,7 +205,7 @@ public class ExecutionDataStoreTest implements IExecutionDataVisitor {
 
 	// === IExecutionDataOutput ===
 
-	public void visitClassExecution(final ExecutionData data) {
+	public void visitClassExecution(final IExecutionData data) {
 		dataOutput.put(Long.valueOf(data.getId()), data);
 	}
 

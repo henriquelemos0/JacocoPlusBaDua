@@ -60,7 +60,7 @@ public class ModifiedSystemClassRuntime extends AbstractRuntime {
 	}
 
 	@Override
-	public void startup(final RuntimeData data) throws Exception {
+	public void startup(final AbstractRuntimeData data) throws Exception {
 		System.out.println("ModifiedSystemClassRuntime.startup(data)");
 		super.startup(data);
 		final Field field = systemClass.getField(accessFieldName);
@@ -77,7 +77,7 @@ public class ModifiedSystemClassRuntime extends AbstractRuntime {
 		mv.visitFieldInsn(Opcodes.GETSTATIC, systemClassName, accessFieldName,
 				ACCESS_FIELD_TYPE);
 
-		RuntimeData.generateAccessCall(classid, classname, probecount, mv);
+		AbstractRuntimeData.generateAccessCall(classid, classname, probecount, mv);
 
 		return 6;
 	}

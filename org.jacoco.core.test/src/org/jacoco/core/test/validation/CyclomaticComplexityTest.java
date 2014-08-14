@@ -25,6 +25,7 @@ import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.SessionInfoStore;
 import org.jacoco.core.instr.Instrumenter;
 import org.jacoco.core.internal.analysis.CounterImpl;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.IRuntime;
 import org.jacoco.core.runtime.RuntimeData;
 import org.jacoco.core.runtime.SystemPropertiesRuntime;
@@ -43,7 +44,7 @@ public class CyclomaticComplexityTest {
 		public void test(int arg);
 	}
 
-	private RuntimeData data;
+	private AbstractRuntimeData data;
 	private IRuntime runtime;
 	private ClassReader reader;
 	private Target target;

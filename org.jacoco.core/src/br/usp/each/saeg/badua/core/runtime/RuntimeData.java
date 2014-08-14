@@ -19,7 +19,7 @@ public class RuntimeData {
 	private final Map<String, long[]> data = new HashMap<String, long[]>();
 
 	public RuntimeData() {
-		System.out.println("RuntimeData.runtimedata - badua");
+		System.out.println("RuntimeData.RuntimeData() - badua");
 	}
 
 	public long[] getExecutionData(final String className, final int size) {

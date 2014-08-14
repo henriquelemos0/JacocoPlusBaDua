@@ -17,8 +17,8 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import org.jacoco.core.data.ExecutionData;
 import org.jacoco.core.data.ExecutionDataWriter;
+import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.data.IExecutionDataVisitor;
 import org.jacoco.core.data.ISessionInfoVisitor;
 import org.jacoco.core.data.SessionInfo;
@@ -98,7 +98,7 @@ public final class ExecutionDataServer {
 			}
 		}
 
-		public void visitClassExecution(final ExecutionData data) {
+		public void visitClassExecution(final IExecutionData data) {
 			synchronized (fileWriter) {
 				fileWriter.visitClassExecution(data);
 			}

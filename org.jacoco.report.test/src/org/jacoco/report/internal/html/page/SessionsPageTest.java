@@ -20,6 +20,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.jacoco.core.data.ExecutionData;
+import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.report.internal.html.HTMLElement;
 import org.jacoco.report.internal.html.index.ElementIndex;
@@ -34,7 +35,7 @@ public class SessionsPageTest extends PageTestBase {
 
 	private final List<SessionInfo> noSessions = Collections.emptyList();
 
-	private final Collection<ExecutionData> noExecutionData = Collections
+	private final Collection<IExecutionData> noExecutionData = Collections
 			.emptyList();
 
 	private ElementIndex index;
@@ -101,7 +102,7 @@ public class SessionsPageTest extends PageTestBase {
 
 	@Test
 	public void testExecutionDataContent() throws Exception {
-		final Collection<ExecutionData> data = new ArrayList<ExecutionData>();
+		final Collection<IExecutionData> data = new ArrayList<IExecutionData>();
 		data.add(new ExecutionData(0x1000, "ClassB", new boolean[0]));
 		data.add(new ExecutionData(0x1001, "ClassC", new boolean[0]));
 		data.add(new ExecutionData(0x1002, "ClassA", new boolean[0]));

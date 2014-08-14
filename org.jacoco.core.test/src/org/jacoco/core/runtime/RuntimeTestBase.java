@@ -33,7 +33,7 @@ import org.objectweb.asm.commons.Method;
  */
 public abstract class RuntimeTestBase {
 
-	private RuntimeData data;
+	private AbstractRuntimeData data;
 
 	private IRuntime runtime;
 

@@ -41,13 +41,13 @@ public final class PreMain {
 			throws Exception {
 		System.out.println("Premain.premain(opt,inst)");
 		final AgentOptions agentOptions = new AgentOptions(options);// pega os
-		System.out.println("dataFlow = " + agentOptions.getDataflow());
+		System.out.println("dataFlow = " + agentOptions.isDataflow());
 		// parametros
 		// do agent
 		IRuntime runtime = null;
-		if (agentOptions.getDataflow()) {
-			DFRT.init();
-		}
+		// if (agentOptions.getDataflow()) {
+		// DFRT.init();
+		// }
 		final Agent agent = Agent.getInstance(agentOptions);
 		runtime = createRuntime(inst);
 		runtime.startup(agent.getData());

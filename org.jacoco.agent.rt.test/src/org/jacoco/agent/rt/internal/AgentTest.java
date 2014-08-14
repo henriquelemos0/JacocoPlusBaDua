@@ -38,7 +38,7 @@ import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.SessionInfoStore;
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.AgentOptions.OutputMode;
-import org.jacoco.core.runtime.RuntimeData;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -108,7 +108,7 @@ public class AgentTest implements IExceptionLogger {
 			@Override
 			IAgentOutput createAgentOutput() {
 				return new IAgentOutput() {
-					public void startup(AgentOptions options, RuntimeData data) {
+					public void startup(AgentOptions options, AbstractRuntimeData data) {
 					}
 
 					public void shutdown() throws Exception {
@@ -233,7 +233,7 @@ public class AgentTest implements IExceptionLogger {
 			@Override
 			IAgentOutput createAgentOutput() {
 				return new IAgentOutput() {
-					public void startup(AgentOptions options, RuntimeData data) {
+					public void startup(AgentOptions options, AbstractRuntimeData data) {
 					}
 
 					public void shutdown() throws Exception {

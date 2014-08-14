@@ -21,11 +21,11 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
-import org.jacoco.agent.rt.internal.output.TcpConnection;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.core.data.SessionInfoStore;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.RemoteControlReader;
 import org.jacoco.core.runtime.RemoteControlWriter;
 import org.jacoco.core.runtime.RuntimeData;
@@ -39,7 +39,7 @@ public class TcpConnectionTest extends ExecutorTestBase {
 
 	private MockSocketConnection mockConnection;
 
-	private RuntimeData data;
+	private AbstractRuntimeData data;
 
 	@Before
 	@Override

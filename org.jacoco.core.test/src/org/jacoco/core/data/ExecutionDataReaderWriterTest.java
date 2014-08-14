@@ -61,7 +61,7 @@ public class ExecutionDataReaderWriterTest {
 			}
 		});
 		reader.setExecutionDataVisitor(new IExecutionDataVisitor() {
-			public void visitClassExecution(final ExecutionData data) {
+			public void visitClassExecution(final IExecutionData data) {
 				fail("No data expected.");
 			}
 		});

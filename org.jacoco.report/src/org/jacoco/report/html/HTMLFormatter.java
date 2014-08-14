@@ -18,7 +18,7 @@ import java.util.Locale;
 
 import org.jacoco.core.analysis.IBundleCoverage;
 import org.jacoco.core.analysis.ICoverageNode.CounterEntity;
-import org.jacoco.core.data.ExecutionData;
+import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.report.ILanguageNames;
 import org.jacoco.report.IMultiReportOutput;
@@ -132,14 +132,14 @@ public class HTMLFormatter implements IHTMLReportContext {
 	private Table createTable() {
 		final Table t = new Table();
 		t.add("Element", null, new LabelColumn(), false);
-		t.add("Missed Instructions", Styles.BAR, new BarColumn(CounterEntity.INSTRUCTION,
-				locale), true);
-		t.add("Cov.", Styles.CTR2,
-				new PercentageColumn(CounterEntity.INSTRUCTION, locale), false);
-		t.add("Missed Branches", Styles.BAR, new BarColumn(CounterEntity.BRANCH, locale),
-				false);
-		t.add("Cov.", Styles.CTR2, new PercentageColumn(CounterEntity.BRANCH, locale),
-				false);
+		t.add("Missed Instructions", Styles.BAR, new BarColumn(
+				CounterEntity.INSTRUCTION, locale), true);
+		t.add("Cov.", Styles.CTR2, new PercentageColumn(
+				CounterEntity.INSTRUCTION, locale), false);
+		t.add("Missed Branches", Styles.BAR, new BarColumn(
+				CounterEntity.BRANCH, locale), false);
+		t.add("Cov.", Styles.CTR2, new PercentageColumn(CounterEntity.BRANCH,
+				locale), false);
 		addMissedTotalColumns(t, "Cxty", CounterEntity.COMPLEXITY);
 		addMissedTotalColumns(t, "Lines", CounterEntity.LINE);
 		addMissedTotalColumns(t, "Methods", CounterEntity.METHOD);
@@ -193,12 +193,12 @@ public class HTMLFormatter implements IHTMLReportContext {
 		return new IReportVisitor() {
 
 			private List<SessionInfo> sessionInfos;
-			private Collection<ExecutionData> executionData;
+			private Collection<IExecutionData> executionData;
 
 			private HTMLGroupVisitor groupHandler;
 
 			public void visitInfo(final List<SessionInfo> sessionInfos,
-					final Collection<ExecutionData> executionData)
+					final Collection<IExecutionData> executionData)
 					throws IOException {
 				this.sessionInfos = sessionInfos;
 				this.executionData = executionData;

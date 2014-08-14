@@ -20,7 +20,7 @@ import java.util.Arrays;
  * has to be taken about the probe data array of type <code>boolean[]</code>
  * which can be modified.
  */
-public final class ExecutionData {
+public final class ExecutionData implements IExecutionData {
 
 	private final long id;
 
@@ -119,7 +119,7 @@ public final class ExecutionData {
 	 * @param other
 	 *            execution data to merge
 	 */
-	public void merge(final ExecutionData other) {
+	public void merge(final IExecutionData other) {
 		System.out.println("ExecutionData.merge(other)");
 		merge(other, true);
 	}
@@ -147,7 +147,7 @@ public final class ExecutionData {
 	 * @param flag
 	 *            merge mode
 	 */
-	public void merge(final ExecutionData other, final boolean flag) {
+	public void merge(final IExecutionData other, final boolean flag) {
 		System.out.println("to no MERGE(..,..)");
 		assertCompatibility(other.getId(), other.getName(),
 				other.getProbes().length);

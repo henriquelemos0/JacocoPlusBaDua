@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,32 +12,22 @@
  *******************************************************************************/
 package org.jacoco.core.runtime;
 
-import java.util.Random;
+import org.jacoco.core.data.DataflowExecutionData;
+import org.jacoco.core.data.DataflowExecutionDataStore;
 
-/**
- * Base {@link IRuntime} implementation.
- */
-public abstract class AbstractRuntime implements IRuntime {
+public class DataFlowRuntimeData extends AbstractRuntimeData {
 
-	/** access to the runtime data */
-	protected AbstractRuntimeData data;
-
-	/**
-	 * Subclasses must call this method when overwriting it.
-	 */
-	public void startup(final AbstractRuntimeData data) throws Exception {
-		this.data = data;
+	public DataFlowRuntimeData() {
+		store = new DataflowExecutionDataStore();
 	}
 
-	private static final Random RANDOM = new Random();
-
-	/**
-	 * Creates a random session identifier.
-	 * 
-	 * @return random session identifier
-	 */
-	public static String createRandomId() {
-		return Integer.toHexString(RANDOM.nextInt());
+	@Override
+	public DataflowExecutionData getExecutionData(final Long id,
+			final String name, final int probecount) {
+		synchronized (store) {
+			System.out.println("RuntimeData.getExecutionData - call get()");
+			return (DataflowExecutionData) store.get(id, name, probecount);
+		}
 	}
 
 }

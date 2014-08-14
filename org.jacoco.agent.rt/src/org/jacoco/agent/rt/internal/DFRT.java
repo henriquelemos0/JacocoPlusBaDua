@@ -11,14 +11,14 @@
  *******************************************************************************/
 package org.jacoco.agent.rt.internal;
 
-import br.usp.each.saeg.badua.core.runtime.RuntimeData;
+import org.jacoco.core.runtime.DataFlowRuntimeData;
 
 public final class DFRT {
 
-	private static RuntimeData DATA;
+	private static DataFlowRuntimeData DATA;
 
 	static {
-		DATA = DFAgent.getInstance().getData();
+		DATA = (DataFlowRuntimeData) Agent.getInstance().getData();
 		System.out.println("DFRT!");
 	}
 
@@ -29,11 +29,13 @@ public final class DFRT {
 	public static void init() {
 	}
 
+	// metodo chamado pelo codigo instrumentado
 	public static long[] getData(final String className, final int size) {
-		System.out.println("DFRT.getData(" + className + " , " + size + ")");
-		final long[] result = DATA.getExecutionData(className, size);
-		System.out.println("result: " + result[0]);
-		return DATA.getExecutionData(className, size);
+		// System.out.println("DFRT.getData(" + className + " , " + size + ")");
+		// final long[] result = DATA.getExecutionData(className, size);
+		// System.out.println("result: " + result[0]);
+		return DATA.getExecutionData((long) className.hashCode(), className,
+				size).getLongProbes();
 	}
 
 }

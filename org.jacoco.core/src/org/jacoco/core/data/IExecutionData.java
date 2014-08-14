@@ -10,24 +10,23 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.runtime;
+package org.jacoco.core.data;
 
-import org.jacoco.core.data.ExecutionData;
-import org.jacoco.core.data.ExecutionDataStore;
+public interface IExecutionData {
 
-public class RuntimeData extends AbstractRuntimeData {
+	public long getId();
 
-	public RuntimeData() {
-		store = new ExecutionDataStore();
-	}
+	public String getName();
 
-	@Override
-	public ExecutionData getExecutionData(final Long id, final String name,
-			final int probecount) {
-		synchronized (store) {
-			System.out.println("RuntimeData.getExecutionData - call get()");
-			return (ExecutionData) store.get(id, name, probecount);
-		}
-	}
+	public boolean[] getProbes();
+
+	public void reset();
+
+	public void merge(final IExecutionData other);
+
+	public void merge(final IExecutionData other, final boolean flag);
+
+	public void assertCompatibility(final long id, final String name,
+			final int probecount) throws IllegalStateException;
 
 }

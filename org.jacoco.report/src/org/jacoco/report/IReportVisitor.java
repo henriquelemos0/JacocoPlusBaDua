@@ -16,12 +16,13 @@ import java.util.Collection;
 import java.util.List;
 
 import org.jacoco.core.data.ExecutionData;
+import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.data.SessionInfo;
 
 /**
  * Interface for all implementations to retrieve structured report data. Unlike
- * nested {@link IReportGroupVisitor} instances the root visitor accepts exactly one
- * bundle or group.
+ * nested {@link IReportGroupVisitor} instances the root visitor accepts exactly
+ * one bundle or group.
  */
 public interface IReportVisitor extends IReportGroupVisitor {
 
@@ -39,7 +40,7 @@ public interface IReportVisitor extends IReportGroupVisitor {
 	 *             in case of IO problems with the report writer
 	 */
 	public void visitInfo(List<SessionInfo> sessionInfos,
-			Collection<ExecutionData> executionData) throws IOException;
+			Collection<IExecutionData> executionData) throws IOException;
 
 	/**
 	 * Has to be called after all report data has been emitted.

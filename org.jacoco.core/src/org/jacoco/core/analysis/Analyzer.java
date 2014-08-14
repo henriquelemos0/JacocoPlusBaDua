@@ -20,8 +20,8 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.jacoco.core.data.ExecutionData;
 import org.jacoco.core.data.ExecutionDataStore;
+import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.internal.ContentTypeDetector;
 import org.jacoco.core.internal.Pack200Streams;
 import org.jacoco.core.internal.analysis.ClassAnalyzer;
@@ -74,7 +74,7 @@ public class Analyzer {
 	 */
 	private ClassVisitor createAnalyzingVisitor(final long classid,
 			final String className) {
-		final ExecutionData data = executionData.get(classid);
+		final IExecutionData data = executionData.get(classid);
 		final boolean[] probes;
 		final boolean noMatch;
 		if (data == null) {

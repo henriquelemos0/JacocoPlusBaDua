@@ -499,7 +499,7 @@ public final class AgentOptions {
 	/**
 	 * @return
 	 */
-	public boolean getDataflow() {
+	public boolean isDataflow() {
 		return getOption(DATAFLOW, false);
 	}
 
