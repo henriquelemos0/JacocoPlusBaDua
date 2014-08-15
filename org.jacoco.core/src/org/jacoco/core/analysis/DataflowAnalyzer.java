@@ -14,23 +14,23 @@ package org.jacoco.core.analysis;
 import org.jacoco.core.data.AbstractExecutionDataStore;
 import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.internal.analysis.ClassAnalyzer;
-import org.jacoco.core.internal.data.CRC64;
 import org.jacoco.core.internal.flow.ClassProbesAdapter;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 
 /**
- * An {@link Analyzer} instance processes a set of Java class files and
+ * An {@link DataflowAnalyzer} instance processes a set of Java class files and
  * calculates coverage data for them. For each class file the result is reported
  * to a given {@link ICoverageVisitor} instance. In addition the
- * {@link Analyzer} requires a {@link AbstractExecutionDataStore} instance that
- * holds the execution data for the classes to analyze. The {@link Analyzer}
- * offers several methods to analyze classes from a variety of sources.
+ * {@link DataflowAnalyzer} requires a {@link AbstractExecutionDataStore}
+ * instance that holds the execution data for the classes to analyze. The
+ * {@link DataflowAnalyzer} offers several methods to analyze classes from a
+ * variety of sources.
  */
-public class Analyzer extends AbstractAnalyzer {
+public class DataflowAnalyzer extends AbstractAnalyzer {
 
 	@SuppressWarnings("javadoc")
-	public Analyzer(final AbstractExecutionDataStore executionData,
+	public DataflowAnalyzer(final AbstractExecutionDataStore executionData,
 			final ICoverageVisitor coverageVisitor) {
 		super(executionData, coverageVisitor);
 	}
@@ -91,8 +91,8 @@ public class Analyzer extends AbstractAnalyzer {
 	 */
 	@Override
 	public void analyzeClass(final ClassReader reader) {
-		final ClassVisitor visitor = createAnalyzingVisitor(
-				CRC64.checksum(reader.b), reader.getClassName());
+		final ClassVisitor visitor = createAnalyzingVisitor(reader
+				.getClassName().hashCode(), reader.getClassName());
 		reader.accept(visitor, 0);
 	}
 }

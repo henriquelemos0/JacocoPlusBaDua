@@ -34,6 +34,9 @@ public final class DFRT {
 		// System.out.println("DFRT.getData(" + className + " , " + size + ")");
 		// final long[] result = DATA.getExecutionData(className, size);
 		// System.out.println("result: " + result[0]);
+
+		// ID da jacoco é calculado com -> CRC64.checksum(reader.b);
+		System.out.println("classID: " + (long) className.hashCode());
 		return DATA.getExecutionData((long) className.hashCode(), className,
 				size).getLongProbes();
 	}
