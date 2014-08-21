@@ -7,7 +7,7 @@ import br.usp.each.saeg.jaguar.runner.JaguarRunnerHeuristic;
 import br.usp.each.saeg.jaguar.runner.JaguarSuite;
 
 @RunWith(JaguarSuite.class)
-@JaguarRunnerHeuristic(JaccardHeuristic.class)
+@JaguarRunnerHeuristic(value = JaccardHeuristic.class, isDataflow = true)
 public class AllTests {
 
 }

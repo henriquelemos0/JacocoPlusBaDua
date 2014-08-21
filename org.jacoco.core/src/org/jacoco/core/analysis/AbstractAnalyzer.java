@@ -23,10 +23,7 @@ import java.util.zip.ZipInputStream;
 import org.jacoco.core.data.AbstractExecutionDataStore;
 import org.jacoco.core.internal.ContentTypeDetector;
 import org.jacoco.core.internal.Pack200Streams;
-import org.jacoco.core.internal.analysis.StringPool;
-import org.jacoco.core.internal.data.CRC64;
 import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassVisitor;
 
 /**
  * An {@link AbstractAnalyzer} instance processes a set of Java class files and
@@ -38,40 +35,6 @@ import org.objectweb.asm.ClassVisitor;
  * sources.
  */
 public abstract class AbstractAnalyzer {
-
-	protected final AbstractExecutionDataStore executionData;
-
-	protected final ICoverageVisitor coverageVisitor;
-
-	protected final StringPool stringPool;
-
-	/**
-	 * Creates a new analyzer reporting to the given output.
-	 * 
-	 * @param executionData
-	 *            execution data
-	 * @param coverageVisitor
-	 *            the output instance that will coverage data for every analyzed
-	 *            class
-	 */
-	public AbstractAnalyzer(final AbstractExecutionDataStore executionData,
-			final ICoverageVisitor coverageVisitor) {
-		this.executionData = executionData;
-		this.coverageVisitor = coverageVisitor;
-		this.stringPool = new StringPool();
-	}
-
-	/**
-	 * Creates an ASM class visitor for analysis.
-	 * 
-	 * @param classid
-	 *            id of the class calculated with {@link CRC64}
-	 * @param className
-	 *            VM name of the class
-	 * @return ASM visitor to write class definition to
-	 */
-	protected abstract ClassVisitor createAnalyzingVisitor(final long classid,
-			final String className);
 
 	/**
 	 * Analyzes the class given as a ASM reader.

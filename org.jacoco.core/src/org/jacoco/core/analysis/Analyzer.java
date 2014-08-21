@@ -14,6 +14,7 @@ package org.jacoco.core.analysis;
 import org.jacoco.core.data.AbstractExecutionDataStore;
 import org.jacoco.core.data.IExecutionData;
 import org.jacoco.core.internal.analysis.ClassAnalyzer;
+import org.jacoco.core.internal.analysis.StringPool;
 import org.jacoco.core.internal.data.CRC64;
 import org.jacoco.core.internal.flow.ClassProbesAdapter;
 import org.objectweb.asm.ClassReader;
@@ -29,14 +30,29 @@ import org.objectweb.asm.ClassVisitor;
  */
 public class Analyzer extends AbstractAnalyzer {
 
-	@SuppressWarnings("javadoc")
+	private final AbstractExecutionDataStore executionData;
+
+	private final ICoverageVisitor coverageVisitor;
+
+	private final StringPool stringPool;
+
+	/**
+	 * Creates a new analyzer reporting to the given output.
+	 * 
+	 * @param executionData
+	 *            execution data
+	 * @param coverageVisitor
+	 *            the output instance that will coverage data for every analyzed
+	 *            class
+	 */
 	public Analyzer(final AbstractExecutionDataStore executionData,
 			final ICoverageVisitor coverageVisitor) {
-		super(executionData, coverageVisitor);
+		this.executionData = executionData;
+		this.coverageVisitor = coverageVisitor;
+		this.stringPool = new StringPool();
 	}
 
-	@Override
-	protected ClassVisitor createAnalyzingVisitor(final long classid,
+	private ClassVisitor createAnalyzingVisitor(final long classid,
 			final String className) {
 		// ************************************************************************************
 		System.out
