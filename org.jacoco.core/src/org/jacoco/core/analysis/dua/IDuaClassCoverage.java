@@ -9,7 +9,7 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis;
+package org.jacoco.core.analysis.dua;
 
 import java.util.Collection;
 
@@ -30,6 +30,13 @@ public interface IDuaClassCoverage {
 	public long getId();
 
 	/**
+	 * Returns the name of the class.
+	 * 
+	 * @return class identifier
+	 */
+	public String getName();
+	
+	/**
 	 * Returns the VM name of the package this class belongs to.
 	 * 
 	 * @return VM name of the package
@@ -49,5 +56,26 @@ public interface IDuaClassCoverage {
 	 * @return methods of this class
 	 */
 	public Collection<IDuaMethodCoverage> getMethods();
+	
+	/**
+	 * Returns the VM signature of the class.
+	 * 
+	 * @return VM signature of the class (may be <code>null</code>)
+	 */
+	public String getSignature();
 
+	/**
+	 * Returns the VM name of the superclass.
+	 * 
+	 * @return VM name of the super class (may be <code>null</code>, i.e.
+	 *         <code>java/lang/Object</code>)
+	 */
+	public String getSuperName();
+
+	/**
+	 * Returns the VM names of implemented/extended interfaces
+	 * 
+	 * @return VM names of implemented/extended interfaces
+	 */
+	public String[] getInterfaceNames();
 }

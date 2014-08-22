@@ -9,7 +9,7 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis;
+package org.jacoco.core.analysis.dua;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -77,21 +77,21 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 	// }
 
 	public void visitCoverage(final IDuaClassCoverage coverage) {
-		// Only consider classes that actually contain code:
-		// if (coverage.getInstructionCounter().getTotalCount() > 0) {
-		// final String name = coverage.getName();
-		// final IClassCoverage dup = classes.put(name, coverage);
-		// if (dup != null && dup.getId() != coverage.getId()) {
-		// throw new IllegalStateException(
-		// "Can't add different class with same name: " + name);
-		// }
-		// final String source = coverage.getSourceFileName();
-		// if (source != null) {
-		// final SourceFileCoverageImpl sourceFile = getSourceFile(source,
-		// coverage.getPackageName());
-		// sourceFile.increment(coverage);
-		// }
-		// }
+		// Only consider classes that contain at least one method:
+		if (coverage.getMethods().size() > 0) {
+			final String name = coverage.getName();
+			final IDuaClassCoverage dup = classes.put(name, coverage);
+			if (dup != null && dup.getId() != coverage.getId()) {
+				throw new IllegalStateException(
+						"Can't add different class with same name: " + name);
+			}
+//			final String source = coverage.getSourceFileName();
+//			if (source != null) {
+//				final SourceFileCoverageImpl sourceFile = getSourceFile(source,
+//						coverage.getPackageName());
+//				sourceFile.increment(coverage);
+//			}
+		}
 	}
 
 	// private SourceFileCoverageImpl getSourceFile(final String filename,

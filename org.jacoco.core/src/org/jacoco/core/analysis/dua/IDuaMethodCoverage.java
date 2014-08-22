@@ -9,16 +9,22 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis;
+package org.jacoco.core.analysis.dua;
 
 import java.util.Collection;
 
 /**
- * Coverage data of a single method. The name of this node is the local method
- * name.
+ * Coverage data of a single method. 
  */
 public interface IDuaMethodCoverage {
 
+	/**
+	 * Returns the name of this node.
+	 * 
+	 * @return name of this node
+	 */
+	public String getName();
+	
 	/**
 	 * Returns the parameter description of the method.
 	 * 
@@ -33,6 +39,11 @@ public interface IDuaMethodCoverage {
 	 */
 	public String getSignature();
 
-	public Collection<Dua> getDuas();
+	/**
+	 * Returns the duas included in this method.
+	 * 
+	 * @return duas of this method
+	 */
+	public Collection<IDua> getDuas();
 
 }

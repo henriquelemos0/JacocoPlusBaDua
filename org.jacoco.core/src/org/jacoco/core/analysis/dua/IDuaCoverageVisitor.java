@@ -9,16 +9,26 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis;
+package org.jacoco.core.analysis.dua;
 
-public interface IDua {
+import java.util.Collection;
 
-	public abstract int getDef();
+import org.jacoco.core.analysis.IClassCoverage;
 
-	public abstract int getUse();
+/**
+ * Interface for coverage data output as a stream of {@link IClassCoverage}
+ * instances.
+ */
+public interface IDuaCoverageVisitor {
 
-	public abstract int getTarget();
+	public Collection<IDuaClassCoverage> getClasses();
 
-	public abstract int getVar();
+	/**
+	 * For analyzed class coverage data is emitted to this method.
+	 * 
+	 * @param coverage
+	 *            coverage data for a class
+	 */
+	public void visitCoverage(IDuaClassCoverage coverage);
 
 }

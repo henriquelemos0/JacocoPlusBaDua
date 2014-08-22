@@ -9,30 +9,33 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis;
+package org.jacoco.core.analysis.dua;
+
+import java.util.Set;
+
 
 public class Dua implements IDua {
 
-	private final int def;
+	private final Set<Integer> def;
 
-	private final int use;
+	private final Set<Integer> use;
 
-	private final int target;
+	private final Set<Integer> target;
 
-	private final int var;
+	private final String var;
+	
+	private final int status;
 
-	public Dua(final int def, final int use, final int var) {
-		this.def = def;
-		this.use = use;
-		this.var = var;
-		target = -1;
+	public Dua(final Set<Integer> def, final Set<Integer> use, final String var, final int status) {
+		this(def,use,null,var,status);
 	}
 
-	public Dua(final int def, final int use, final int target, final int var) {
+	public Dua(final Set<Integer> def, final Set<Integer> use, final Set<Integer> target, final String var, final int status) {
 		this.def = def;
 		this.use = use;
 		this.target = target;
 		this.var = var;
+		this.status = status;
 	}
 
 	@Override
@@ -61,7 +64,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getDef()
 	 */
-	public int getDef() {
+	public Set<Integer> getDef() {
 		return def;
 	}
 
@@ -70,7 +73,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getUse()
 	 */
-	public int getUse() {
+	public Set<Integer> getUse() {
 		return use;
 	}
 
@@ -79,7 +82,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getTarget()
 	 */
-	public int getTarget() {
+	public Set<Integer> getTarget() {
 		return target;
 	}
 
@@ -88,8 +91,12 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getVar()
 	 */
-	public int getVar() {
+	public String getVar() {
 		return var;
+	}
+
+	public int getStatus() {
+		return status;
 	}
 
 }
