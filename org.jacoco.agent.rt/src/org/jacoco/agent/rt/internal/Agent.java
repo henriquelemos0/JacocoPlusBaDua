@@ -28,7 +28,7 @@ import org.jacoco.core.runtime.AbstractRuntime;
 import org.jacoco.core.runtime.AbstractRuntimeData;
 import org.jacoco.core.runtime.AgentOptions;
 import org.jacoco.core.runtime.AgentOptions.OutputMode;
-import org.jacoco.core.runtime.DataFlowRuntimeData;
+import org.jacoco.core.runtime.dua.DataFlowRuntimeData;
 import org.jacoco.core.runtime.RuntimeData;
 
 /**

@@ -10,10 +10,11 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.runtime;
+package org.jacoco.core.runtime.dua;
 
-import org.jacoco.core.data.DataflowExecutionData;
-import org.jacoco.core.data.DataflowExecutionDataStore;
+import org.jacoco.core.data.dua.DataflowExecutionData;
+import org.jacoco.core.data.dua.DataflowExecutionDataStore;
+import org.jacoco.core.runtime.AbstractRuntimeData;
 
 public class DataFlowRuntimeData extends AbstractRuntimeData {
 

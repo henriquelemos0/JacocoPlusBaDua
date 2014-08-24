@@ -40,7 +40,7 @@ public class DuaMethodAnalyzer {
 
 	private final DuaMethodCoverage coverage;
 	private final MethodNode methodNode;
-	
+
 	private final String className;
 	private final int methodProbeIndex;
 	private final boolean[] probes;
@@ -49,7 +49,9 @@ public class DuaMethodAnalyzer {
 
 	/**
 	 * New Method analyzer for the given probe data.
-	 * @param className 
+	 * 
+	 * @param methodId
+	 * @param className
 	 * 
 	 * @param name
 	 *            method name
@@ -61,15 +63,16 @@ public class DuaMethodAnalyzer {
 	 * @param probes
 	 *            recorded probe date of the containing class or
 	 *            <code>null</code> if the class is not executed at all
-	 * @param methodProbeIndex 
+	 * @param methodProbeIndex
 	 */
-	public DuaMethodAnalyzer(String className, MethodNode methodNode, final boolean[] probes, int methodProbeIndex) {
+	public DuaMethodAnalyzer(final int methodId, final String className, final MethodNode methodNode,
+			final boolean[] probes, final int methodProbeIndex) {
 		super();
 		this.className = className;
 		this.methodNode = methodNode;
 		this.probes = probes;
 		this.methodProbeIndex = methodProbeIndex;
-		this.coverage = new DuaMethodCoverage(methodNode.name, methodNode.desc, methodNode.signature);
+		this.coverage = new DuaMethodCoverage(methodId, methodNode.name, methodNode.desc, methodNode.signature);
 	}
 
 	/**
@@ -89,27 +92,26 @@ public class DuaMethodAnalyzer {
 
 		final int[] lines = getLines();
 		final DefUseChain[] chains = transform(methodNode);
-		for (int i = 0; i < chains.length ; i++) {
-			Set<Integer> defLines = getDefs(lines, chains[i]);
-			Set<Integer> useLines = getUses(lines, chains[i]);
-			Set<Integer> targetLines = getTargets(lines, chains[i]);
-			String varName = getName(chains[i]);
-			int status = getStatus(i);
-			IDua dua = new Dua(defLines, useLines, targetLines, varName, status);
+		for (int i = 0; i < chains.length; i++) {
+			final Set<Integer> defLines = getDefs(lines, chains[i]);
+			final Set<Integer> useLines = getUses(lines, chains[i]);
+			final Set<Integer> targetLines = getTargets(lines, chains[i]);
+			final String varName = getName(chains[i]);
+			final int status = getStatus(i);
+			final IDua dua = new Dua(defLines, useLines, targetLines, varName, status);
 			coverage.addDua(dua);
 		}
 	}
 
-	private int getStatus(int i) {
+	private int getStatus(final int i) {
 		int status = ICounter.NOT_COVERED;
-		if (probes[methodProbeIndex + i]){
+		if (probes[methodProbeIndex + i]) {
 			status = ICounter.FULLY_COVERED;
 		}
 		return status;
 	}
 
-	private Set<Integer> getTargets(final int[] lines,
-			final DefUseChain defUseChain) {
+	private Set<Integer> getTargets(final int[] lines, final DefUseChain defUseChain) {
 		final Set<Integer> targets = new TreeSet<Integer>();
 		if (defUseChain.target != -1) {
 			for (final int instrucao : blocks[defUseChain.target]) {
@@ -119,8 +121,7 @@ public class DuaMethodAnalyzer {
 		return targets;
 	}
 
-	private Set<Integer> getUses(final int[] lines,
-			final DefUseChain defUseChain) {
+	private Set<Integer> getUses(final int[] lines, final DefUseChain defUseChain) {
 		final Set<Integer> uses = new TreeSet<Integer>();
 		for (final int instrucao : blocks[defUseChain.use]) {
 			uses.add(Integer.valueOf(lines[instrucao]));
@@ -128,8 +129,7 @@ public class DuaMethodAnalyzer {
 		return uses;
 	}
 
-	private Set<Integer> getDefs(final int[] lines,
-			final DefUseChain defUseChain) {
+	private Set<Integer> getDefs(final int[] lines, final DefUseChain defUseChain) {
 		final Set<Integer> defs = new TreeSet<Integer>();
 		for (final int instrucao : blocks[defUseChain.def]) {
 			defs.add(Integer.valueOf(lines[instrucao]));
@@ -145,7 +145,7 @@ public class DuaMethodAnalyzer {
 				lines[methodNode.instructions.indexOf(insn.start)] = insn.line;
 			}
 		}
-		
+
 		int line = 1;
 		for (int i = 0; i < lines.length; i++) {
 			if (lines[i] == 0) {
@@ -172,8 +172,6 @@ public class DuaMethodAnalyzer {
 		return name;
 	}
 
-	
-
 	private String varName(final int insn, final int index, final MethodNode mn) {
 		for (final LocalVariableNode local : mn.localVariables) {
 			if (local.index == index) {
@@ -197,15 +195,13 @@ public class DuaMethodAnalyzer {
 
 		final DefUseFrame[] frames = analyzer.getDefUseFrames();
 		final Variable[] variables = analyzer.getVariables();
-		// frames[0].getDefinitions().contains(variables[0]); // instrucao 0
-		// teve deficao da variavel 0, se retornar true
-		vars = variables;
 		final int[][] successors = analyzer.getSuccessors();
 		final int[][] predecessors = analyzer.getPredecessors();
 		final int[][] basicBlocks = analyzer.getBasicBlocks();
 		final int[] leaders = analyzer.getLeaders();
 
 		blocks = analyzer.getBasicBlocks();
+		vars = variables;
 
 		final DefUseChain[] chains = DefUseChain.toBasicBlock(
 				new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors), leaders,

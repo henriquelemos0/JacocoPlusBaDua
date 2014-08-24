@@ -9,7 +9,9 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.data;
+package org.jacoco.core.data.dua;
+
+import org.jacoco.core.data.AbstractExecutionDataStore;
 
 public final class DataflowExecutionDataStore extends
 		AbstractExecutionDataStore {

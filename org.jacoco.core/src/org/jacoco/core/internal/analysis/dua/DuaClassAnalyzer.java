@@ -31,7 +31,7 @@ public class DuaClassAnalyzer {
 	private final StringPool stringPool;
 	private int methodProbeIndex = 0;
 
-	private DuaClassCoverage coverage;
+	private final DuaClassCoverage coverage;
 
 	/**
 	 * Creates a new analyzer that builds coverage data for a class.
@@ -46,17 +46,15 @@ public class DuaClassAnalyzer {
 	 * @param stringPool
 	 *            shared pool to minimize the number of {@link String} instances
 	 */
-	public DuaClassAnalyzer(final ClassNode cn, final boolean[] probes,
-			final StringPool stringPool) {
+	public DuaClassAnalyzer(final ClassNode cn, final boolean[] probes, final StringPool stringPool) {
 		this.classid = cn.name.hashCode();
 		this.methods = cn.methods;
 		this.probes = probes;
 		this.stringPool = stringPool;
-		String[] interfaces = cn.interfaces.toArray(new String[cn.interfaces.size()]);
-		this.coverage = new DuaClassCoverage(stringPool.get(cn.name), classid,
-				stringPool.get(cn.signature), stringPool.get(cn.superName),
-				stringPool.get(interfaces));
-		
+		final String[] interfaces = cn.interfaces.toArray(new String[cn.interfaces.size()]);
+		this.coverage = new DuaClassCoverage(stringPool.get(cn.name), classid, stringPool.get(cn.signature),
+				stringPool.get(cn.superName), stringPool.get(interfaces));
+
 	}
 
 	/**
@@ -70,7 +68,8 @@ public class DuaClassAnalyzer {
 	}
 
 	public void analyze() {
-		for (MethodNode method : methods) {
+		int methodId = 0;
+		for (final MethodNode method : methods) {
 			// do not analyze abstract methods
 			if ((method.access & Opcodes.ACC_ABSTRACT) != 0) {
 				continue;
@@ -79,8 +78,8 @@ public class DuaClassAnalyzer {
 			if (method.name.equals("<clinit>")) {
 				continue;
 			}
-			
-			visitMethod(method);
+
+			visitMethod(method, methodId++);
 		}
 	}
 
@@ -88,16 +87,17 @@ public class DuaClassAnalyzer {
 		this.coverage.setSourceFileName(stringPool.get(source));
 	}
 
-	public void visitMethod(final MethodNode methodNode) {
-		DuaMethodAnalyzer methodAnalyzer = new DuaMethodAnalyzer(coverage.getName(), methodNode, probes, methodProbeIndex);
+	public void visitMethod(final MethodNode methodNode, final int methodId) {
+		final DuaMethodAnalyzer methodAnalyzer = new DuaMethodAnalyzer(methodId, coverage.getName(), methodNode,
+				probes, methodProbeIndex);
 		methodAnalyzer.analyze();
-		
-		IDuaMethodCoverage methodCoverage = methodAnalyzer.getCoverage();
+
+		final IDuaMethodCoverage methodCoverage = methodAnalyzer.getCoverage();
 		if (methodCoverage.getDuas().size() > 0) {
 			// Only consider methods that actually contain code
 			coverage.addMethod(methodCoverage);
 		}
-		
+
 		methodProbeIndex += ((methodCoverage.getDuas().size() + 63) / 64) * 64;
 	}
 

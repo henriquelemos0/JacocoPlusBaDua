@@ -11,7 +11,7 @@
  *******************************************************************************/
 package org.jacoco.agent.rt.internal;
 
-import org.jacoco.core.runtime.DataFlowRuntimeData;
+import org.jacoco.core.runtime.dua.DataFlowRuntimeData;
 
 public final class DFRT {
 

@@ -14,9 +14,17 @@ package org.jacoco.core.analysis.dua;
 import java.util.Collection;
 
 /**
- * Coverage data of a single method. 
+ * Coverage data of a single method.
  */
 public interface IDuaMethodCoverage {
+
+	/**
+	 * Returns the id of this node. The first method id is equals to 1, the
+	 * second equals to 2, and so on.
+	 * 
+	 * @return name of this node
+	 */
+	public int getId();
 
 	/**
 	 * Returns the name of this node.
@@ -24,7 +32,7 @@ public interface IDuaMethodCoverage {
 	 * @return name of this node
 	 */
 	public String getName();
-	
+
 	/**
 	 * Returns the parameter description of the method.
 	 * 

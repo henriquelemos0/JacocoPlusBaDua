@@ -12,6 +12,7 @@
 package org.jacoco.core.analysis.dua;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 public class DuaClassCoverage implements IDuaClassCoverage {
@@ -24,8 +25,8 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 	private final Collection<IDuaMethodCoverage> methods;
 	private String sourceFileName;
 
-	public DuaClassCoverage(String name, long id, String signature,
-			String superName, String[] interfaces) {
+	public DuaClassCoverage(final String name, final long id, final String signature, final String superName,
+			final String[] interfaces) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -34,7 +35,7 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 		this.interfaces = interfaces;
 		this.methods = new ArrayList<IDuaMethodCoverage>();
 	}
-	
+
 	/**
 	 * Add a method to this class.
 	 * 
@@ -57,7 +58,7 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 		return sourceFileName;
 	}
 
-	public void setSourceFileName(String sourceFileName) {
+	public void setSourceFileName(final String sourceFileName) {
 		this.sourceFileName = sourceFileName;
 	}
 
@@ -80,6 +81,13 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 
 	public String[] getInterfaceNames() {
 		return interfaces;
+	}
+
+	@Override
+	public String toString() {
+		return "DuaClassCoverage [id=" + id + ", name=" + name + ", signature=" + signature + ", superName="
+				+ superName + ", interfaces=" + Arrays.toString(interfaces) + ", methods=" + methods
+				+ ", sourceFileName=" + sourceFileName + "]";
 	}
 
 }
