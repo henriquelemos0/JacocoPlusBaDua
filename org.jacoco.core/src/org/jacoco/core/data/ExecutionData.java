@@ -20,13 +20,13 @@ import java.util.Arrays;
  * has to be taken about the probe data array of type <code>boolean[]</code>
  * which can be modified.
  */
-public final class ExecutionData implements IExecutionData {
+public class ExecutionData implements IExecutionData {
 
 	private final long id;
 
 	private final String name;
 
-	private final boolean[] probes;
+	protected boolean[] probes;
 
 	/**
 	 * Creates a new {@link ExecutionData} object with the given probe data.
@@ -40,7 +40,6 @@ public final class ExecutionData implements IExecutionData {
 	 */
 	public ExecutionData(final long id, final String name,
 			final boolean[] probes) {
-		System.out.println("ExecutionData.ExecutionData(id,name,probes)");
 		this.id = id;
 		this.name = name;
 		this.probes = probes;
@@ -58,7 +57,6 @@ public final class ExecutionData implements IExecutionData {
 	 *            probe count
 	 */
 	public ExecutionData(final long id, final String name, final int probeCount) {
-		System.out.println("ExecutionData.ExecutionData(id,name,probeCount)");
 		this.id = id;
 		this.name = name;
 		this.probes = new boolean[probeCount];
@@ -71,7 +69,6 @@ public final class ExecutionData implements IExecutionData {
 	 * @return class identifier
 	 */
 	public long getId() {
-		System.out.println("ExecutionData.getId()");
 		return id;
 	}
 
@@ -81,7 +78,6 @@ public final class ExecutionData implements IExecutionData {
 	 * @return VM name
 	 */
 	public String getName() {
-		System.out.println("ExecutionData.getName()");
 		return name;
 	}
 
@@ -92,7 +88,6 @@ public final class ExecutionData implements IExecutionData {
 	 * @return probe data
 	 */
 	public boolean[] getProbes() {
-		System.out.println("ExecutionData.getProbes() " + getName());
 		return probes;
 	}
 
@@ -100,7 +95,6 @@ public final class ExecutionData implements IExecutionData {
 	 * Sets all probes to <code>false</code>.
 	 */
 	public void reset() {
-		System.out.println("ExecutionData.reset()");
 		Arrays.fill(probes, false);
 	}
 
@@ -120,7 +114,6 @@ public final class ExecutionData implements IExecutionData {
 	 *            execution data to merge
 	 */
 	public void merge(final IExecutionData other) {
-		System.out.println("ExecutionData.merge(other)");
 		merge(other, true);
 	}
 
@@ -148,7 +141,6 @@ public final class ExecutionData implements IExecutionData {
 	 *            merge mode
 	 */
 	public void merge(final IExecutionData other, final boolean flag) {
-		System.out.println("to no MERGE(..,..)");
 		assertCompatibility(other.getId(), other.getName(),
 				other.getProbes().length);
 		final boolean[] otherData = other.getProbes();
@@ -175,7 +167,6 @@ public final class ExecutionData implements IExecutionData {
 	 */
 	public void assertCompatibility(final long id, final String name,
 			final int probecount) throws IllegalStateException {
-		System.out.println("to no ASSERTCOMPATIBILITY");
 		if (this.id != id) {
 			throw new IllegalStateException(format(
 					"Different ids (%016x and %016x).", Long.valueOf(this.id),
@@ -195,7 +186,6 @@ public final class ExecutionData implements IExecutionData {
 
 	@Override
 	public String toString() {
-		System.out.println("to no TOSTRING");
 		return String.format("ExecutionData[name=%s, id=%016x]", name,
 				Long.valueOf(id));
 	}

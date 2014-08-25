@@ -11,6 +11,8 @@
  *******************************************************************************/
 package org.jacoco.core.internal.analysis.dua;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -86,9 +88,12 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
-		if (probes.length == 0) {
-			return;
-		}
+		
+		List<LocalVariableNode> localVariables = methodNode.localVariables;
+
+		//put in the hashmap the name of the source variables method
+		HashMap<Integer,String> variables = new HashMap<Integer,String>();
+		for(LocalVariableNode var: localVariables) variables.put(var.index,var.name);
 
 		final int[] lines = getLines();
 		final DefUseChain[] chains = transform(methodNode);
@@ -96,7 +101,8 @@ public class DuaMethodAnalyzer {
 			final Set<Integer> defLines = getDefs(lines, chains[i]);
 			final Set<Integer> useLines = getUses(lines, chains[i]);
 			final Set<Integer> targetLines = getTargets(lines, chains[i]);
-			final String varName = getName(chains[i]);
+			String varName = getName(chains[i]);
+			varName = getVariableName(varName,variables);
 			final int status = getStatus(i);
 			final IDua dua = new Dua(defLines, useLines, targetLines, varName, status);
 			coverage.addDua(dua);
@@ -208,6 +214,22 @@ public class DuaMethodAnalyzer {
 				basicBlocks);
 
 		return chains;
+	}
+	
+	
+	private String getVariableName(String variable, HashMap<Integer, String> variables) {
+		String type = variable.substring(0, 1);
+		if(type.equals("L")){
+			String split = variable.substring(2);
+			try{
+				Integer.parseInt(split);
+				return variables.get(Integer.parseInt(split));
+			}catch(NumberFormatException e){ 
+				split = (String) split.subSequence(0, split.length()-2);
+				return variables.get(Integer.parseInt(split))+"[]";
+			}
+		}
+		return variable;
 	}
 
 }

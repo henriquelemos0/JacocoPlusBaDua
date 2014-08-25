@@ -88,11 +88,13 @@ public class DuaClassAnalyzer {
 	}
 
 	public void visitMethod(final MethodNode methodNode, final int methodId) {
+		System.out.println("method: "+methodNode.name);
 		final DuaMethodAnalyzer methodAnalyzer = new DuaMethodAnalyzer(methodId, coverage.getName(), methodNode,
 				probes, methodProbeIndex);
 		methodAnalyzer.analyze();
 
 		final IDuaMethodCoverage methodCoverage = methodAnalyzer.getCoverage();
+		System.out.println("DUA's Size: "+methodCoverage.getDuas().size());
 		if (methodCoverage.getDuas().size() > 0) {
 			// Only consider methods that actually contain code
 			coverage.addMethod(methodCoverage);
