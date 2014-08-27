@@ -61,7 +61,7 @@ public class DataflowAnalyzer extends AbstractAnalyzer {
 		
 		final boolean[] probes = getProbes(cn.name);
 		if (probes == null) {
-			System.out.println("Classe: "+cn.name+" Não-Tem DUAs");
+			//System.out.println("Classe: "+cn.name+" Não-Tem DUAs");
 			return;
 		}
 		
@@ -73,7 +73,7 @@ public class DataflowAnalyzer extends AbstractAnalyzer {
 	private boolean[] getProbes(String className) {
 		final IExecutionData executionData = executionDataStore.get(className.hashCode());
 		if (executionData != null) {
-			System.out.println("Classe: "+executionData.getName()+" Tem DUAs");
+			//System.out.println("Classe: "+executionData.getName()+" Tem DUAs");
 			return executionData.getProbes();
 		}
 		return null;

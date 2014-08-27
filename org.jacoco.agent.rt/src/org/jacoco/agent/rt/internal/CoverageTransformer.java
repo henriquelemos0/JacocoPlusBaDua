@@ -59,8 +59,6 @@ public class CoverageTransformer implements ClassFileTransformer {
 	 */
 	public CoverageTransformer(final IRuntime runtime,
 			final AgentOptions options, final IExceptionLogger logger) {
-		System.out
-				.println("CoverageTransformer.CoverageTransformer(runtime,options,logger)");
 		dataflow = options.isDataflow();
 		if (dataflow) {
 			this.instrumenterdf = new br.usp.each.saeg.badua.core.instr.Instrumenter();

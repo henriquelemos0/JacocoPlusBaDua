@@ -79,7 +79,6 @@ public class ExecutionDataWriter implements ISessionInfoVisitor,
 	}
 
 	public void visitSessionInfo(final SessionInfo info) {
-		System.out.println("ExecutionDataWriter,visitSessionInfo");
 		try {
 			out.writeByte(BLOCK_SESSIONINFO);
 			out.writeUTF(info.getId());
@@ -91,7 +90,6 @@ public class ExecutionDataWriter implements ISessionInfoVisitor,
 	}
 
 	public void visitClassExecution(final IExecutionData data) {
-		System.out.println("ExecutionDataWriter,visitClassExecution");
 		try {
 			out.writeByte(BLOCK_EXECUTIONDATA);
 			out.writeLong(data.getId());

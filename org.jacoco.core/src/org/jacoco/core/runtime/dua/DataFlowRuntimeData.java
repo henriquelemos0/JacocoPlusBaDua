@@ -26,7 +26,6 @@ public class DataFlowRuntimeData extends AbstractRuntimeData {
 	public DataflowExecutionData getExecutionData(final Long id,
 			final String name, final int probecount) {
 		synchronized (store) {
-			System.out.println("RuntimeData.getExecutionData - call get()");
 			return (DataflowExecutionData) store.get(id, name, probecount);
 		}
 	}

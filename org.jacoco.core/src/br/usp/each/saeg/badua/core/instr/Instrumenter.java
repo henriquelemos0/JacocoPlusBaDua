@@ -49,7 +49,7 @@ public class Instrumenter {
 				// + " should be compiled with java 6 or newer");
 				return null;
 			}
-			System.out.println("Class instrumented : " + name);
+			//System.out.println("Class instrumented : " + name);
 			return instrument(new ClassReader(buffer));
 		} catch (final RuntimeException e) {
 			throw instrumentError(name, e);

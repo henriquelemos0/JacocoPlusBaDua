@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * In-memory data store for execution data. The data can be added through its
@@ -29,7 +30,7 @@ import java.util.Set;
 public abstract class AbstractExecutionDataStore implements
 		IExecutionDataVisitor {
 
-	protected final Map<Long, IExecutionData> entries = new HashMap<Long, IExecutionData>();
+	protected final Map<Long, IExecutionData> entries = new ConcurrentHashMap<Long, IExecutionData>();
 
 	protected final Set<String> names = new HashSet<String>();
 
@@ -61,7 +62,6 @@ public abstract class AbstractExecutionDataStore implements
 	 * @see ExecutionData#assertCompatibility(long, String, int)
 	 */
 	public void put(final IExecutionData data) throws IllegalStateException {
-		System.out.println("no put da ExecutionDataStore");
 		final Long id = Long.valueOf(data.getId());
 		final IExecutionData entry = entries.get(id);
 		if (entry == null) {
@@ -158,11 +158,10 @@ public abstract class AbstractExecutionDataStore implements
 	 *            interface to write content to
 	 */
 	public void accept(final IExecutionDataVisitor visitor) {
-		System.out.println("ExecutionDataStore.accept(visitor) empty ? -> "
-				+ entries.isEmpty() + " visitor class: " + visitor.getClass());
+//		System.out.println("ExecutionDataStore.accept(visitor) empty ? -> "
+//				+ entries.isEmpty() + " visitor class: " + visitor.getClass());
 
 		for (final IExecutionData data : entries.values()) {
-			System.out.println("ExecutionDataStore.accept(visitor)");
 			visitor.visitClassExecution(data);
 		}
 	}
@@ -170,7 +169,6 @@ public abstract class AbstractExecutionDataStore implements
 	// === IExecutionDataVisitor ===
 
 	public void visitClassExecution(final IExecutionData data) {
-		System.out.println("no visitClassExecution da ExecutionDataStore");
 		put(data);
 	}
 }

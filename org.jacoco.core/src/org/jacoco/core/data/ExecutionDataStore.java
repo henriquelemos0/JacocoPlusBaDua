@@ -16,9 +16,6 @@ public final class ExecutionDataStore extends AbstractExecutionDataStore {
 	@Override
 	public ExecutionData get(final Long id, final String name,
 			final int probecount) {
-		System.out.println("ExecutionDataStore.get() " + name
-				+ " call new executionData()");
-
 		ExecutionData entry = (ExecutionData) entries.get(id);
 		if (entry == null) {
 			entry = new ExecutionData(id.longValue(), name, probecount);

@@ -51,7 +51,6 @@ public final class PreMain {
 		final Agent agent = Agent.getInstance(agentOptions);
 		runtime = createRuntime(inst);
 		runtime.startup(agent.getData());
-		System.out.println("runtime.getClass -> " + runtime.getClass());
 		inst.addTransformer(new CoverageTransformer(runtime, agentOptions,
 				IExceptionLogger.SYSTEM_ERR));
 	}

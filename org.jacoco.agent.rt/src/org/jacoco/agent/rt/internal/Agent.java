@@ -102,6 +102,7 @@ public class Agent implements IAgent {
 		this.logger = logger;
 
 		if (options.isDataflow()) {
+			System.out.println("Instanciando DataFlowRuntimeData");
 			this.data = new DataFlowRuntimeData();
 		} else {
 			this.data = new RuntimeData();

@@ -19,8 +19,6 @@ public final class DataflowExecutionDataStore extends
 	@Override
 	public DataflowExecutionData get(final Long id, final String name,
 			final int probecount) {
-		System.out.println("ExecutionDataStore.get() " + name
-				+ " call new executionData()");
 
 		DataflowExecutionData entry = (DataflowExecutionData) entries.get(id);
 		if (entry == null) {

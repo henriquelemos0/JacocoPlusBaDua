@@ -87,8 +87,6 @@ public abstract class AbstractRuntimeData {
 	public final void collect(final IExecutionDataVisitor executionDataVisitor,
 			final ISessionInfoVisitor sessionInfoVisitor, final boolean reset) {
 		synchronized (store) {
-			System.out
-					.println("RuntimeData.collect(executionDataVisitor,sessionInfoVisitor,reset)");
 			final SessionInfo info = new SessionInfo(sessionId, startTimeStamp,
 					System.currentTimeMillis());
 			sessionInfoVisitor.visitSessionInfo(info);
@@ -130,7 +128,6 @@ public abstract class AbstractRuntimeData {
 	 *            parameter array of length 3
 	 */
 	public void getProbes(final Object[] args) {
-		System.out.println("RuntimeData.getProbes - call getExecutionData");
 		final Long classid = (Long) args[0];
 		final String name = (String) args[1];
 		final int probecount = ((Integer) args[2]).intValue();
@@ -147,7 +144,6 @@ public abstract class AbstractRuntimeData {
 	 */
 	@Override
 	public boolean equals(final Object args) {
-		System.out.println("RuntimeData.equals(args) - call getProbes");
 		if (args instanceof Object[]) {
 			getProbes((Object[]) args);
 		}
