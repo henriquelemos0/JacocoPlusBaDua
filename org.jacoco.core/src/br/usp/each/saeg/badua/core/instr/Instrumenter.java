@@ -45,11 +45,10 @@ public class Instrumenter {
 				value = (value << 8) | buffer[i];
 			}
 			if (value <= Opcodes.V1_5) {
-				// System.out.println("class " + name
-				// + " should be compiled with java 6 or newer");
+				 System.out.println("class " + name
+				 + " should be compiled with java 6 or newer");
 				return null;
 			}
-			//System.out.println("Class instrumented : " + name);
 			return instrument(new ClassReader(buffer));
 		} catch (final RuntimeException e) {
 			throw instrumentError(name, e);

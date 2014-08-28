@@ -78,7 +78,6 @@ class TcpConnection implements IRemoteCommandVisitor {
 	 * @throws IOException
 	 */
 	public void writeExecutionData(final boolean reset) throws IOException {
-		System.out.println("TcpConnection.writeExecutionData(reset)");
 		if (initialized && !socket.isClosed()) {
 			visitDumpCommand(true, reset);
 		}
@@ -100,9 +99,7 @@ class TcpConnection implements IRemoteCommandVisitor {
 	public void visitDumpCommand(final boolean dump, final boolean reset)
 			throws IOException {
 		if (dump) {
-			data.collect(writer, writer, reset);// writer eh um
-												// remoteControlWriter que
-												// extends executionDataWriter
+			data.collect(writer, writer, reset);
 		} else {
 			if (reset) {
 				data.reset();

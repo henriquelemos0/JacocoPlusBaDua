@@ -47,16 +47,13 @@ public class Agent implements IAgent {
 	 * @return global instance
 	 */
 	public static synchronized Agent getInstance(final AgentOptions options) {
-		System.out.println("Agent.getInstance(opt)");
 		if (singleton == null) {
-			final Agent agent = new Agent(options, IExceptionLogger.SYSTEM_ERR);// cria
-																				// um
-																				// agente
-			agent.startup();// inicia o agente
+			final Agent agent = new Agent(options, IExceptionLogger.SYSTEM_ERR);
+			agent.startup();
 			Runtime.getRuntime().addShutdownHook(new Thread() {
 				@Override
 				public void run() {
-					agent.shutdown();// finaliza o agent
+					agent.shutdown();
 				}
 			});
 			singleton = agent;
@@ -102,7 +99,6 @@ public class Agent implements IAgent {
 		this.logger = logger;
 
 		if (options.isDataflow()) {
-			System.out.println("Instanciando DataFlowRuntimeData");
 			this.data = new DataFlowRuntimeData();
 		} else {
 			this.data = new RuntimeData();
@@ -123,7 +119,6 @@ public class Agent implements IAgent {
 	 * 
 	 */
 	public void startup() {
-		System.out.println("Agent.startup()");
 		try {
 			String sessionId = options.getSessionId();
 			if (sessionId == null) {
@@ -144,11 +139,8 @@ public class Agent implements IAgent {
 	 * Shutdown the agent again.
 	 */
 	public void shutdown() {
-		System.out.println("Agent.shutdown()");
 		try {
 			if (options.getDumpOnExit()) {
-				System.out
-						.println("Agent.shutdown -> output.writeExecutionData(false)");
 				output.writeExecutionData(false);
 			}
 			output.shutdown();// shutdown no output, caso for tcp, fecha os
@@ -167,9 +159,7 @@ public class Agent implements IAgent {
 	 * @return configured controller implementation
 	 */
 	IAgentOutput createAgentOutput() {
-		System.out.println("Agent.createAgentOutput()");
 		final OutputMode controllerType = options.getOutput();
-		System.out.println("Tipo do output: " + controllerType);
 		switch (controllerType) {
 		case file:
 			return new FileOutput();

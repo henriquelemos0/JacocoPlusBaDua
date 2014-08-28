@@ -46,7 +46,6 @@ public class TcpClientOutput implements IAgentOutput {
 
 	public void startup(final AgentOptions options, final AbstractRuntimeData data)
 			throws IOException {
-		System.out.println("TcpClientOutput.startup(opt,data)");
 		final Socket socket = createSocket(options);
 		connection = new TcpConnection(socket, data);
 		connection.init();
@@ -70,7 +69,6 @@ public class TcpClientOutput implements IAgentOutput {
 	}
 
 	public void writeExecutionData(final boolean reset) throws IOException {
-		System.out.println("TcpClientOutput.writeExecutionData(reset)");
 		connection.writeExecutionData(reset);
 	}
 

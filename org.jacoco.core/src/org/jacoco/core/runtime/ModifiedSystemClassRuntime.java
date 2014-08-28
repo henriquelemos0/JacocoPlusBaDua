@@ -61,7 +61,6 @@ public class ModifiedSystemClassRuntime extends AbstractRuntime {
 
 	@Override
 	public void startup(final AbstractRuntimeData data) throws Exception {
-		System.out.println("ModifiedSystemClassRuntime.startup(data)");
 		super.startup(data);
 		final Field field = systemClass.getField(accessFieldName);
 		field.set(null, data);

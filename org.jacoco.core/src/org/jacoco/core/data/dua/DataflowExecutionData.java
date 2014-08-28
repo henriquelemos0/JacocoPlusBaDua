@@ -41,31 +41,6 @@ public class DataflowExecutionData extends ExecutionData {
 		while (it.hasNext()) {
 			booleanProbes[it.next()] = true;
 		}
-
-//		int cont = 0;
-//		System.out.println("long");
-//		for (int x = 0; x < longProbes.length; x++) {
-//			final StringBuffer buffer = new StringBuffer(
-//					Long.toBinaryString(longProbes[x])).reverse();
-//			System.out.println(buffer + " probes[" + x + "]" + " = "
-//					+ longProbes[x]);
-//		}
-//
-//		System.out.println("boolean");
-//		for (final boolean probes : booleanProbes) {
-//			if (probes == true) {
-//				System.out.print("1");
-//			} else {
-//				System.out.print("0");
-//			}
-//			cont++;
-//			if (cont % 64 == 0) {
-//				System.out.println();
-//			}
-//		}
-//
-//		System.out.println();
-
 		this.probes = booleanProbes;
 		return booleanProbes;
 	}

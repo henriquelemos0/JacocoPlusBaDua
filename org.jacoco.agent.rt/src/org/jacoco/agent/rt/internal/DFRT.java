@@ -19,7 +19,6 @@ public final class DFRT {
 
 	static {
 		DATA = (DataFlowRuntimeData) Agent.getInstance().getData();
-		System.out.println("DFRT!");
 	}
 
 	private DFRT() {
@@ -29,13 +28,7 @@ public final class DFRT {
 	public static void init() {
 	}
 
-	// metodo chamado pelo codigo instrumentado
 	public static long[] getData(final String className, final int size) {
-		// System.out.println("DFRT.getData(" + className + " , " + size + ")");
-		// final long[] result = DATA.getExecutionData(className, size);
-		// System.out.println("result: " + result[0]);
-
-		// ID da jacoco é calculado com -> CRC64.checksum(reader.b);
 		return DATA.getExecutionData((long) className.hashCode(), className,
 				size).getLongProbes();
 	}

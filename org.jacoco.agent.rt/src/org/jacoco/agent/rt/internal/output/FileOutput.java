@@ -52,9 +52,7 @@ public class FileOutput implements IAgentOutput {
 	public void writeExecutionData(final boolean reset) throws IOException {
 		final OutputStream output = openFile();
 		try {
-			// passa o arquivo por parametro
 			final ExecutionDataWriter writer = new ExecutionDataWriter(output);
-			System.out.println("FileOutput.writeExecutionData");
 			data.collect(writer, writer, reset);
 		} finally {
 			output.close();

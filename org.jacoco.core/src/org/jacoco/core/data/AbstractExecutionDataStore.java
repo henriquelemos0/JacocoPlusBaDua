@@ -158,9 +158,6 @@ public abstract class AbstractExecutionDataStore implements
 	 *            interface to write content to
 	 */
 	public void accept(final IExecutionDataVisitor visitor) {
-//		System.out.println("ExecutionDataStore.accept(visitor) empty ? -> "
-//				+ entries.isEmpty() + " visitor class: " + visitor.getClass());
-
 		for (final IExecutionData data : entries.values()) {
 			visitor.visitClassExecution(data);
 		}

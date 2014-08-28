@@ -39,17 +39,9 @@ public final class PreMain {
 	 */
 	public static void premain(final String options, final Instrumentation inst)
 			throws Exception {
-		System.out.println("Premain.premain(opt,inst)");
-		final AgentOptions agentOptions = new AgentOptions(options);// pega os
-		System.out.println("dataFlow = " + agentOptions.isDataflow());
-		// parametros
-		// do agent
-		IRuntime runtime = null;
-		// if (agentOptions.getDataflow()) {
-		// DFRT.init();
-		// }
+		final AgentOptions agentOptions = new AgentOptions(options);
 		final Agent agent = Agent.getInstance(agentOptions);
-		runtime = createRuntime(inst);
+		IRuntime runtime = createRuntime(inst);
 		runtime.startup(agent.getData());
 		inst.addTransformer(new CoverageTransformer(runtime, agentOptions,
 				IExceptionLogger.SYSTEM_ERR));

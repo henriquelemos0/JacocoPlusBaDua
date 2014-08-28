@@ -78,7 +78,6 @@ public class CoverageTransformer implements ClassFileTransformer {
 			final Class<?> classBeingRedefined,
 			final ProtectionDomain protectionDomain,
 			final byte[] classfileBuffer) throws IllegalClassFormatException {
-		// System.out.println("CoverageTransformer.transform() " + classname);
 
 		if (classBeingRedefined != null) {
 			// We do not support class retransformation.
@@ -88,17 +87,10 @@ public class CoverageTransformer implements ClassFileTransformer {
 		if (!filter(loader, classname)) {
 			return null;
 		}
-
-		// verify the class major version, if is less then 1.5(49),not
-		// instrument
-		// System.out.println("Classsss: " + classname);
-
+		
 		try {
 			classFileDumper.dump(classname, classfileBuffer);
-			if (dataflow) {
-				return instrumenterdf.instrument(classfileBuffer, classname);
-			}
-			return instrumenter.instrument(classfileBuffer, classname);
+			return dataflow ? instrumenterdf.instrument(classfileBuffer, classname) : instrumenter.instrument(classfileBuffer, classname);
 
 		} catch (final Exception ex) {
 			final IllegalClassFormatException wrapper = new IllegalClassFormatException(
