@@ -20,8 +20,6 @@ import org.jacoco.core.internal.instr.InstrSupport;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-import br.usp.each.saeg.badua.core.runtime.RuntimeData;
-
 /**
  * Container for runtime execution and meta data. All access to the runtime data
  * is thread safe.
@@ -193,7 +191,7 @@ public abstract class AbstractRuntimeData {
 	}
 
 	/**
-	 * Generates the code that calls a {@link RuntimeData} instance through the
+	 * Generates the code that calls a {@link AbstractRuntimeData} instance through the
 	 * JRE API method {@link Object#equals(Object)}. The code pops a
 	 * {@link Object} instance from the stack and pushes the probe array of type
 	 * <code>boolean[]</code> on the operand stack. The generated code requires

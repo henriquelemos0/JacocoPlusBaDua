@@ -54,30 +54,6 @@ public class Analyzer extends AbstractAnalyzer {
 
 	private ClassVisitor createAnalyzingVisitor(final long classid,
 			final String className) {
-		// ************************************************************************************
-		System.out
-				.println("Analyzer.createAnalyzingVisitor(classid,className) -> "
-						+ className);
-		System.out.println(className.hashCode());
-		final IExecutionData dataTest = executionData.get(className.hashCode());
-		if (dataTest != null) {
-			final boolean[] booleanProbes = dataTest.getProbes();
-			int cont = 0;
-			for (final boolean probes : booleanProbes) {
-				if (probes == true) {
-					System.out.print("1");
-				} else {
-					System.out.print("0");
-				}
-				cont++;
-				if (cont % 64 == 0) {
-					System.out.println();
-				}
-			}
-		} else {
-			System.out.println("dataTest = null -> " + className);
-		}
-		// ***********************************************************************************
 		final IExecutionData data = executionData.get(classid);
 		final boolean[] probes;
 		final boolean noMatch;
