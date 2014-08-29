@@ -39,7 +39,7 @@ public class Instrumenter {
 	public byte[] instrument(final byte[] buffer, final String name)
 			throws IOException {
 		try {
-			// no final instrument java class <= 1.5
+			// just instrument java class >= 1.6
 			int value = 0;
 			for (int i = 6; i < 8; i++) {
 				value = (value << 8) | buffer[i];
