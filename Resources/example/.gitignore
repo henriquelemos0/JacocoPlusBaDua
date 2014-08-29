@@ -1,8 +1,0 @@
-/target
-
-.classpath
-/codeforest.xml
-/jacoco.exec
-/coverage.ser
-.settings/
-.project

@@ -1,1 +1,0 @@
-java -jar ba-dua-0.0.4-all.jar report -classes ./example/target/classes/ -input example/coverage.ser --all
