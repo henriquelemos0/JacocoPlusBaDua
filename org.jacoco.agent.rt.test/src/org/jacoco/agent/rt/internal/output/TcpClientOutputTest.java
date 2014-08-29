@@ -14,7 +14,6 @@
 package org.jacoco.agent.rt.internal.output;
 
 import static org.junit.Assert.assertEquals;
-
 import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
