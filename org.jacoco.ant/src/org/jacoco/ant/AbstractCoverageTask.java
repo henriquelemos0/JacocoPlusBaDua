@@ -193,7 +193,12 @@ public class AbstractCoverageTask extends Task {
 		agentOptions.setJmx(jmx);
 	}
 
-	// criei
+	/**
+	 * Sets dataflow coverage
+	 * 
+	 * @param dataflow
+	 *            <code>true</code> if wants dataflow coverage
+	 */
 	public void setDataflow(final boolean dataflow) {
 		agentOptions.setDataflow(dataflow);
 	}

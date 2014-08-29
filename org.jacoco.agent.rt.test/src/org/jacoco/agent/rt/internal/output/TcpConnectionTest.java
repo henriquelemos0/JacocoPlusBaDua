@@ -12,6 +12,7 @@
 package org.jacoco.agent.rt.internal.output;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+import org.jacoco.agent.rt.internal.output.TcpConnection;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.ExecutionDataWriter;
 import org.jacoco.core.data.SessionInfo;

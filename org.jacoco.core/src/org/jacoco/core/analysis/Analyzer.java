@@ -51,7 +51,16 @@ public class Analyzer extends AbstractAnalyzer {
 		this.coverageVisitor = coverageVisitor;
 		this.stringPool = new StringPool();
 	}
-
+	
+	/**
+	 * Creates an ASM class visitor for analysis.
+	 * 
+	 * @param classid
+	 *            id of the class calculated with {@link CRC64}
+	 * @param className
+	 *            VM name of the class
+	 * @return ASM visitor to write class definition to
+	 */
 	private ClassVisitor createAnalyzingVisitor(final long classid,
 			final String className) {
 		final IExecutionData data = executionData.get(classid);

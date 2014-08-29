@@ -71,7 +71,6 @@ public class CoverageTransformer implements ClassFileTransformer {
 		excludes = new WildcardMatcher(toVMName(options.getExcludes()));
 		exclClassloader = new WildcardMatcher(options.getExclClassloader());
 		classFileDumper = new ClassFileDumper(options.getClassDumpDir());
-
 	}
 
 	public byte[] transform(final ClassLoader loader, final String classname,
@@ -91,7 +90,6 @@ public class CoverageTransformer implements ClassFileTransformer {
 		try {
 			classFileDumper.dump(classname, classfileBuffer);
 			return dataflow ? instrumenterdf.instrument(classfileBuffer, classname) : instrumenter.instrument(classfileBuffer, classname);
-
 		} catch (final Exception ex) {
 			final IllegalClassFormatException wrapper = new IllegalClassFormatException(
 					ex.getMessage());

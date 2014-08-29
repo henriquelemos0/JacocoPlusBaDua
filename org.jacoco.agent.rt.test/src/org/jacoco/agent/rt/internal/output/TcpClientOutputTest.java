@@ -14,6 +14,7 @@
 package org.jacoco.agent.rt.internal.output;
 
 import static org.junit.Assert.assertEquals;
+
 import static org.junit.Assert.assertFalse;
 
 import java.io.IOException;
@@ -21,6 +22,8 @@ import java.net.Socket;
 import java.util.List;
 
 import org.jacoco.agent.rt.internal.ExceptionRecorder;
+import org.jacoco.agent.rt.internal.output.IAgentOutput;
+import org.jacoco.agent.rt.internal.output.TcpClientOutput;
 import org.jacoco.core.data.ExecutionDataStore;
 import org.jacoco.core.data.SessionInfo;
 import org.jacoco.core.data.SessionInfoStore;

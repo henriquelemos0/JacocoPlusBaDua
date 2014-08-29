@@ -41,6 +41,7 @@ public final class PreMain {
 			throws Exception {
 		final AgentOptions agentOptions = new AgentOptions(options);
 		final Agent agent = Agent.getInstance(agentOptions);
+		System.out.println("Executing Jacoco+Badua");
 		IRuntime runtime = createRuntime(inst);
 		runtime.startup(agent.getData());
 		inst.addTransformer(new CoverageTransformer(runtime, agentOptions,

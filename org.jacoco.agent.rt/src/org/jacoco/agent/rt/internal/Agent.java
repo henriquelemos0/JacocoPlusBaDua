@@ -125,7 +125,7 @@ public class Agent implements IAgent {
 				sessionId = createSessionId();
 			}
 			data.setSessionId(sessionId);
-			output = createAgentOutput(); // instancia o output
+			output = createAgentOutput();
 			output.startup(options, data);
 			if (options.getJmx()) {
 				jmxRegistration = new JmxRegistration(this);
@@ -143,8 +143,7 @@ public class Agent implements IAgent {
 			if (options.getDumpOnExit()) {
 				output.writeExecutionData(false);
 			}
-			output.shutdown();// shutdown no output, caso for tcp, fecha os
-								// sockets
+			output.shutdown();
 			if (jmxRegistration != null) {
 				jmxRegistration.call();
 			}
