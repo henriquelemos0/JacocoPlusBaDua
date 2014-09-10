@@ -220,16 +220,22 @@ public class DuaMethodAnalyzer {
 	private String getVariableName(String variable, HashMap<Integer, String> variables) {
 		String type = variable.substring(0, 1);
 		if(type.equals("L")){
-			String split = variable.substring(2);
-			try{
-				Integer.parseInt(split);
-				return variables.get(Integer.parseInt(split));
-			}catch(NumberFormatException e){ 
-				split = (String) split.subSequence(0, split.length()-2);
-				return variables.get(Integer.parseInt(split))+"[]";
+			if(variable.substring(1,2).equals("@")){
+				String split = variable.substring(2);
+				try{
+					Integer.parseInt(split);
+					return variables.get(Integer.parseInt(split));
+				}catch(NumberFormatException e){
+					System.out.println(split);
+					if(split.length() >= 2 ){
+						split = (String) split.subSequence(0, split.length()-2);
+						return variables.get(Integer.parseInt(split))+"[]";
+					}
+				}
+			}else{
+				return variable;
 			}
 		}
 		return variable;
 	}
-
 }
