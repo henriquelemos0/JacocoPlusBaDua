@@ -33,6 +33,7 @@ import br.usp.each.saeg.asm.defuse.DepthFirstDefUseChainSearch;
 import br.usp.each.saeg.asm.defuse.Field;
 import br.usp.each.saeg.asm.defuse.Local;
 import br.usp.each.saeg.asm.defuse.Variable;
+import br.usp.each.saeg.commons.ArrayUtils;
 
 /**
  * A {@link MethodProbesVisitor} that analyzes which statements and branches of
@@ -46,8 +47,11 @@ public class DuaMethodAnalyzer {
 	private final String className;
 	private final int methodProbeIndex;
 	private final boolean[] probes;
-	private Variable[] vars;
 	private int[][] blocks;
+	private DefUseChain[] duaI;
+	private int[][] basicBlocks;
+	private int[] leaders;
+	private Variable[] variables;
 
 	/**
 	 * New Method analyzer for the given probe data.
@@ -97,16 +101,31 @@ public class DuaMethodAnalyzer {
 
 		final int[] lines = getLines();
 		final DefUseChain[] chains = transform(methodNode);
-		for (int i = 0; i < chains.length; i++) {
-			final Set<Integer> defLines = getDefs(lines, chains[i]);
-			final Set<Integer> useLines = getUses(lines, chains[i]);
-			final Set<Integer> targetLines = getTargets(lines, chains[i]);
-			String varName = getName(chains[i]);
-			varName = getVariableName(varName,variables);
-			final int status = getStatus(i);
-			final IDua dua = new Dua(defLines, useLines, targetLines, varName, status);
-			coverage.addDua(dua);
+		
+		for (DefUseChain defUseChain : duaI) {
+			DefUseChain bbchain = toBB(defUseChain); // transform given defusechain to BasicBlock
+			if(bbchain != null){
+				int i = ArrayUtils.indexOf(chains, bbchain); // find given defusechain in BasicBlocks array
+				int defLine = lines[defUseChain.def];
+				int useLine = lines[defUseChain.use];
+				int targetLines = -1;
+				if(defUseChain.target != -1){
+					targetLines = lines[defUseChain.target];
+				}
+				String varName = getName(chains[i]);
+				varName = getVariableName(varName,variables);
+				int status = getStatus(i);
+				IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
+				coverage.addDua(dua);
+			}
 		}
+	}
+
+	private DefUseChain toBB(DefUseChain c) {
+		if (DefUseChain.isGlobal(c, leaders, basicBlocks)) {
+            return new DefUseChain(leaders[c.def], leaders[c.use], c.target == -1 ? -1 : leaders[c.target], c.var);
+        }
+		return null;
 	}
 
 	private int getStatus(final int i) {
@@ -115,32 +134,6 @@ public class DuaMethodAnalyzer {
 			status = ICounter.FULLY_COVERED;
 		}
 		return status;
-	}
-
-	private Set<Integer> getTargets(final int[] lines, final DefUseChain defUseChain) {
-		final Set<Integer> targets = new TreeSet<Integer>();
-		if (defUseChain.target != -1) {
-			for (final int instrucao : blocks[defUseChain.target]) {
-				targets.add(Integer.valueOf(lines[instrucao]));
-			}
-		}
-		return targets;
-	}
-
-	private Set<Integer> getUses(final int[] lines, final DefUseChain defUseChain) {
-		final Set<Integer> uses = new TreeSet<Integer>();
-		for (final int instrucao : blocks[defUseChain.use]) {
-			uses.add(Integer.valueOf(lines[instrucao]));
-		}
-		return uses;
-	}
-
-	private Set<Integer> getDefs(final int[] lines, final DefUseChain defUseChain) {
-		final Set<Integer> defs = new TreeSet<Integer>();
-		for (final int instrucao : blocks[defUseChain.def]) {
-			defs.add(Integer.valueOf(lines[instrucao]));
-		}
-		return defs;
 	}
 
 	private int[] getLines() {
@@ -164,7 +157,7 @@ public class DuaMethodAnalyzer {
 	}
 
 	private String getName(final DefUseChain dua) {
-		final Variable var = vars[dua.var];
+		final Variable var = variables[dua.var];
 		String name;
 		if (var instanceof Field) {
 			name = ((Field) var).name;
@@ -200,17 +193,17 @@ public class DuaMethodAnalyzer {
 		}
 
 		final DefUseFrame[] frames = analyzer.getDefUseFrames();
-		final Variable[] variables = analyzer.getVariables();
+		variables = analyzer.getVariables();
 		final int[][] successors = analyzer.getSuccessors();
 		final int[][] predecessors = analyzer.getPredecessors();
-		final int[][] basicBlocks = analyzer.getBasicBlocks();
-		final int[] leaders = analyzer.getLeaders();
+		basicBlocks = analyzer.getBasicBlocks();
+		leaders = analyzer.getLeaders();
 
 		blocks = analyzer.getBasicBlocks();
-		vars = variables;
-
-		final DefUseChain[] chains = DefUseChain.toBasicBlock(
-				new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors), leaders,
+		//defuse with instructions
+		duaI = new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors);
+		//defuse with basic blocks
+		final DefUseChain[] chains = DefUseChain.toBasicBlock(new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors), leaders,
 				basicBlocks);
 
 		return chains;

@@ -11,25 +11,19 @@
  *******************************************************************************/
 package org.jacoco.core.analysis.dua;
 
-import java.util.Set;
-
 public class Dua implements IDua {
 
-	private final Set<Integer> def;
+	private final int def;
 
-	private final Set<Integer> use;
+	private final int use;
 
-	private final Set<Integer> target;
+	private final int target;
 
 	private final String var;
 
 	private final int status;
 
-	public Dua(final Set<Integer> def, final Set<Integer> use, final String var, final int status) {
-		this(def, use, null, var, status);
-	}
-
-	public Dua(final Set<Integer> def, final Set<Integer> use, final Set<Integer> target, final String var,
+	public Dua(final int def, final int use, final int target, final String var,
 			final int status) {
 		this.def = def;
 		this.use = use;
@@ -43,7 +37,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getDef()
 	 */
-	public Set<Integer> getDef() {
+	public int getDef() {
 		return def;
 	}
 
@@ -52,7 +46,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getUse()
 	 */
-	public Set<Integer> getUse() {
+	public int getUse() {
 		return use;
 	}
 
@@ -61,7 +55,7 @@ public class Dua implements IDua {
 	 * 
 	 * @see org.jacoco.core.analysis.IDua#getTarget()
 	 */
-	public Set<Integer> getTarget() {
+	public int getTarget() {
 		return target;
 	}
 
@@ -88,62 +82,5 @@ public class Dua implements IDua {
 		return "Dua [def=" + def + ", use=" + use + ", target=" + target + ", var=" + var + ", status=" + status + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((def == null) ? 0 : def.hashCode());
-		result = prime * result + status;
-		result = prime * result + ((target == null) ? 0 : target.hashCode());
-		result = prime * result + ((use == null) ? 0 : use.hashCode());
-		result = prime * result + ((var == null) ? 0 : var.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(final Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		final Dua other = (Dua) obj;
-		if (def == null) {
-			if (other.def != null) {
-				return false;
-			}
-		} else if (!def.equals(other.def)) {
-			return false;
-		}
-		if (status != other.status) {
-			return false;
-		}
-		if (target == null) {
-			if (other.target != null) {
-				return false;
-			}
-		} else if (!target.equals(other.target)) {
-			return false;
-		}
-		if (use == null) {
-			if (other.use != null) {
-				return false;
-			}
-		} else if (!use.equals(other.use)) {
-			return false;
-		}
-		if (var == null) {
-			if (other.var != null) {
-				return false;
-			}
-		} else if (!var.equals(other.var)) {
-			return false;
-		}
-		return true;
-	}
 
 }

@@ -17,11 +17,11 @@ import org.jacoco.core.analysis.ICounter;
 
 public interface IDua {
 
-	Set<Integer> getDef();
+	int getDef();
 
-	Set<Integer> getUse();
+	int getUse();
 
-	Set<Integer> getTarget();
+	int getTarget();
 
 	String getVar();
 	
