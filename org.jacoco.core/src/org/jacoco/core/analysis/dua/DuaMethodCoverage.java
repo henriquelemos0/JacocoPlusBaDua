@@ -13,8 +13,6 @@ package org.jacoco.core.analysis.dua;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class DuaMethodCoverage implements IDuaMethodCoverage {
 

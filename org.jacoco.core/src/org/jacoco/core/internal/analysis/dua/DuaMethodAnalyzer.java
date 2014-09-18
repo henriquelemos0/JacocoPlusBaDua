@@ -11,6 +11,9 @@
  *******************************************************************************/
 package org.jacoco.core.internal.analysis.dua;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
@@ -92,7 +95,9 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
-		
+		if(methodNode.name.length() > 50){
+			System.out.println(methodNode.name);
+		}
 		List<LocalVariableNode> localVariables = methodNode.localVariables;
 
 		//put in the hashmap the name of the source variables method
@@ -101,7 +106,7 @@ public class DuaMethodAnalyzer {
 
 		final int[] lines = getLines();
 		final DefUseChain[] chains = transform(methodNode);
-		
+
 		for (DefUseChain defUseChain : duaI) {
 			DefUseChain bbchain = toBB(defUseChain); // transform given defusechain to BasicBlock
 			if(bbchain != null){
@@ -113,18 +118,20 @@ public class DuaMethodAnalyzer {
 					targetLines = lines[defUseChain.target];
 				}
 				String varName = getName(chains[i]);
-				varName = getVariableName(varName,variables);
-				int status = getStatus(i);
-				IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
-				coverage.addDua(dua);
+				if(varName != null){ // ignoring case of duas created by the compiler
+					varName = getVariableName(varName,variables);
+					int status = getStatus(i);
+					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
+					coverage.addDua(dua);
+				}
 			}
 		}
 	}
 
 	private DefUseChain toBB(DefUseChain c) {
 		if (DefUseChain.isGlobal(c, leaders, basicBlocks)) {
-            return new DefUseChain(leaders[c.def], leaders[c.use], c.target == -1 ? -1 : leaders[c.target], c.var);
-        }
+			return new DefUseChain(leaders[c.def], leaders[c.use], c.target == -1 ? -1 : leaders[c.target], c.var);
+		}
 		return null;
 	}
 
@@ -165,9 +172,10 @@ public class DuaMethodAnalyzer {
 			try {
 				name = varName(dua.def, ((Local) var).var, methodNode);
 			} catch (final Exception e) {
-				name = var.toString();
+				name = null;
 			}
 		}
+		
 		return name;
 	}
 
@@ -208,27 +216,24 @@ public class DuaMethodAnalyzer {
 
 		return chains;
 	}
-	
-	
+
 	private String getVariableName(String variable, HashMap<Integer, String> variables) {
+
+		//System.out.println("\n variavel: "+variable);
 		String type = variable.substring(0, 1);
 		if(type.equals("L")){
 			if(variable.substring(1,2).equals("@")){
 				String split = variable.substring(2);
-				try{
-					Integer.parseInt(split);
-					return variables.get(Integer.parseInt(split));
-				}catch(NumberFormatException e){
-					System.out.println(split);
-					if(split.length() >= 2 ){
-						split = (String) split.subSequence(0, split.length()-2);
-						return variables.get(Integer.parseInt(split))+"[]";
-					}
-				}
+				Integer.parseInt(split);
+			//	System.out.println("retornoIF: "+variables.get(Integer.parseInt(split)));
+				return variables.get(Integer.parseInt(split));
+
 			}else{
+			//	System.out.println("retornoELSE: "+variable);
 				return variable;
 			}
 		}
+		//System.out.println("retorno: "+variable);
 		return variable;
 	}
 }
