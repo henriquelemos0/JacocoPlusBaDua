@@ -11,13 +11,8 @@
  *******************************************************************************/
 package org.jacoco.core.internal.analysis.dua;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.jacoco.core.analysis.ICounter;
 import org.jacoco.core.analysis.dua.Dua;
@@ -50,7 +45,6 @@ public class DuaMethodAnalyzer {
 	private final String className;
 	private final int methodProbeIndex;
 	private final boolean[] probes;
-	private int[][] blocks;
 	private DefUseChain[] duaI;
 	private int[][] basicBlocks;
 	private int[] leaders;
@@ -95,9 +89,6 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
-		if(methodNode.name.length() > 50){
-			System.out.println(methodNode.name);
-		}
 		List<LocalVariableNode> localVariables = methodNode.localVariables;
 
 		//put in the hashmap the name of the source variables method
@@ -206,8 +197,6 @@ public class DuaMethodAnalyzer {
 		final int[][] predecessors = analyzer.getPredecessors();
 		basicBlocks = analyzer.getBasicBlocks();
 		leaders = analyzer.getLeaders();
-
-		blocks = analyzer.getBasicBlocks();
 		//defuse with instructions
 		duaI = new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors);
 		//defuse with basic blocks

@@ -19,6 +19,7 @@ import org.jacoco.core.internal.analysis.dua.DuaClassAnalyzer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodNode;
 
 /**
  * An {@link DataflowAnalyzer} instance processes a set of Java class files and
@@ -65,6 +66,14 @@ public class DataflowAnalyzer extends AbstractAnalyzer {
 		}
 		
 		final DuaClassAnalyzer analyzer = new DuaClassAnalyzer(cn, probes, stringPool);
+
+//		if(cn.name.equals("org/apache/commons/math/stat/ranking/NaturalRanking")){
+//			for (int posMethod = 0; posMethod < cn.methods.size(); posMethod++) {
+//				MethodNode methodNode = cn.methods.get(posMethod);
+//				System.out.println(methodNode.name);
+//			}
+//		}
+		
 		analyzer.analyze();
 		coverageVisitor.visitCoverage(analyzer.getCoverage());
 	}
