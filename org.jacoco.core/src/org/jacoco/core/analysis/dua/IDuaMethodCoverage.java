@@ -53,5 +53,8 @@ public interface IDuaMethodCoverage {
 	 * @return duas of this method
 	 */
 	public Collection<IDua> getDuas();
+	
+	
+	public boolean isStaticMethod();
 
 }

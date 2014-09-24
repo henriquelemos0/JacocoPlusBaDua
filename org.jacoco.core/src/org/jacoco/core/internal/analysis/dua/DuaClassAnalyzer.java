@@ -72,21 +72,24 @@ public class DuaClassAnalyzer {
 	public void analyze() {
 		int methodId = 0;
 		for (final MethodNode method : methods) {
-			// do not analyze abstract methods
+			// Does not instrument:
+			// 1. Abstract methods
 			if ((method.access & Opcodes.ACC_ABSTRACT) != 0) {
 				continue;
 			}
-			
+	        // 2. Interfaces
+			if ((method.access & Opcodes.ACC_INTERFACE) != 0) {
+				continue;
+			}
+	        // 3. Synthetic methods
 			if ((method.access & Opcodes.ACC_SYNTHETIC) != 0) {
 				continue;
 			}
-			// do not analyze static class initialization
+			// 4. Static class initialization
 			if (method.name.equals("<clinit>")) {
 				continue;
 			}
-			if(className.equals("org/apache/commons/math/stat/ranking/NaturalRanking")){
-				System.out.println(method.name);
-			}
+
 			visitMethod(method, methodId++);
 		}
 	}

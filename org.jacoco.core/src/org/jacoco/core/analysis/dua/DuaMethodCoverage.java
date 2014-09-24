@@ -21,14 +21,16 @@ public class DuaMethodCoverage implements IDuaMethodCoverage {
 	private final String desc;
 	private final String signature;
 	private final Collection<IDua> duas;
+	private final boolean isStatic;
 
-	public DuaMethodCoverage(final int id, final String name, final String desc, final String signature) {
+	public DuaMethodCoverage(final int id, final String name, final String desc, final String signature, boolean isStatic) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.desc = desc;
 		this.signature = signature;
 		this.duas = new ArrayList<IDua>();
+		this.isStatic=isStatic;
 	}
 
 	/**
@@ -65,6 +67,10 @@ public class DuaMethodCoverage implements IDuaMethodCoverage {
 	public String toString() {
 		return "DuaMethodCoverage [id=" + id + ", name=" + name + ", desc=" + desc + ", signature=" + signature
 				+ ", duas=" + duas + "]";
+	}
+
+	public boolean isStaticMethod() {
+		return isStatic;
 	}
 
 }

@@ -19,6 +19,7 @@ import org.jacoco.core.analysis.dua.Dua;
 import org.jacoco.core.analysis.dua.DuaMethodCoverage;
 import org.jacoco.core.analysis.dua.IDua;
 import org.jacoco.core.internal.flow.MethodProbesVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.LineNumberNode;
 import org.objectweb.asm.tree.LocalVariableNode;
 import org.objectweb.asm.tree.MethodNode;
@@ -75,7 +76,7 @@ public class DuaMethodAnalyzer {
 		this.methodNode = methodNode;
 		this.probes = probes;
 		this.methodProbeIndex = methodProbeIndex;
-		this.coverage = new DuaMethodCoverage(methodId, methodNode.name, methodNode.desc, methodNode.signature);
+		this.coverage = new DuaMethodCoverage(methodId, methodNode.name, methodNode.desc, methodNode.signature,((methodNode.access & Opcodes.ACC_STATIC) != 0));
 	}
 
 	/**
