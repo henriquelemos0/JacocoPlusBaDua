@@ -97,25 +97,28 @@ public class DuaMethodAnalyzer {
 		for(LocalVariableNode var: localVariables) variables.put(var.index,var.name);
 
 		final int[] lines = getLines();
-		final DefUseChain[] chains = transform(methodNode);
-
+//		final DefUseChain[] chains = 
+		transform(methodNode);
+		int indexDua = 0;
 		for (DefUseChain defUseChain : duaI) {
 			DefUseChain bbchain = toBB(defUseChain); // transform given defusechain to BasicBlock
 			if(bbchain != null){
-				int i = ArrayUtils.indexOf(chains, bbchain); // find given defusechain in BasicBlocks array
+				//int i = ArrayUtils.indexOf(chains, bbchain); // find given defusechain in BasicBlocks array
 				int defLine = lines[defUseChain.def];
 				int useLine = lines[defUseChain.use];
 				int targetLines = -1;
 				if(defUseChain.target != -1){
 					targetLines = lines[defUseChain.target];
 				}
-				String varName = getName(chains[i]);
+				String varName = getName(defUseChain);
+				//System.out.println("DUA: "+defLine+" "+ useLine+" "+targetLines+" "+varName);
 				if(varName != null){ // ignoring case of duas created by the compiler
-					varName = getVariableName(varName,variables);
-					int status = getStatus(i);
+					//varName = getVariableName(varName,variables);
+					int status = getStatus(indexDua);
 					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
 					coverage.addDua(dua);
 				}
+				indexDua++;
 			}
 		}
 	}
@@ -162,7 +165,7 @@ public class DuaMethodAnalyzer {
 			name = ((Field) var).name;
 		} else {
 			try {
-				name = varName(dua.def, ((Local) var).var, methodNode);
+				name = varName(dua.use, ((Local) var).var, methodNode);
 			} catch (final Exception e) {
 				name = null;
 			}
@@ -205,25 +208,5 @@ public class DuaMethodAnalyzer {
 				basicBlocks);
 
 		return chains;
-	}
-
-	private String getVariableName(String variable, HashMap<Integer, String> variables) {
-
-		//System.out.println("\n variavel: "+variable);
-		String type = variable.substring(0, 1);
-		if(type.equals("L")){
-			if(variable.substring(1,2).equals("@")){
-				String split = variable.substring(2);
-				Integer.parseInt(split);
-			//	System.out.println("retornoIF: "+variables.get(Integer.parseInt(split)));
-				return variables.get(Integer.parseInt(split));
-
-			}else{
-			//	System.out.println("retornoELSE: "+variable);
-				return variable;
-			}
-		}
-		//System.out.println("retorno: "+variable);
-		return variable;
 	}
 }
