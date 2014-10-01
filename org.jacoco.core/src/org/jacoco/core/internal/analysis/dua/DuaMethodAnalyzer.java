@@ -97,13 +97,11 @@ public class DuaMethodAnalyzer {
 		for(LocalVariableNode var: localVariables) variables.put(var.index,var.name);
 
 		final int[] lines = getLines();
-//		final DefUseChain[] chains = 
 		transform(methodNode);
 		int indexDua = 0;
 		for (DefUseChain defUseChain : duaI) {
 			DefUseChain bbchain = toBB(defUseChain); // transform given defusechain to BasicBlock
 			if(bbchain != null){
-				//int i = ArrayUtils.indexOf(chains, bbchain); // find given defusechain in BasicBlocks array
 				int defLine = lines[defUseChain.def];
 				int useLine = lines[defUseChain.use];
 				int targetLines = -1;
@@ -111,9 +109,7 @@ public class DuaMethodAnalyzer {
 					targetLines = lines[defUseChain.target];
 				}
 				String varName = getName(defUseChain);
-				//System.out.println("DUA: "+defLine+" "+ useLine+" "+targetLines+" "+varName);
 				if(varName != null){ // ignoring case of duas created by the compiler
-					//varName = getVariableName(varName,variables);
 					int status = getStatus(indexDua);
 					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
 					coverage.addDua(dua);
