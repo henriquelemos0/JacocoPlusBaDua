@@ -115,6 +115,7 @@ public class DuaMethodAnalyzer {
 					coverage.addDua(dua);
 				}
 				indexDua++;
+				
 			}
 		}
 	}

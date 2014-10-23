@@ -104,7 +104,6 @@ public class DuaClassAnalyzer {
 		methodAnalyzer.analyze();
 
 		final IDuaMethodCoverage methodCoverage = methodAnalyzer.getCoverage();
-		
 		if (methodCoverage.getDuas().size() > 0) {
 			// Only consider methods that actually contain code
 			coverage.addMethod(methodCoverage);

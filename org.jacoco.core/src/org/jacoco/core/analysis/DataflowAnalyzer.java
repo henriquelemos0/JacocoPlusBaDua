@@ -54,25 +54,18 @@ public class DataflowAnalyzer extends AbstractAnalyzer {
 	public void analyzeClass(final ClassReader reader) {
 		final ClassNode cn = new ClassNode(Opcodes.ASM5);
 		reader.accept(cn, ClassReader.EXPAND_FRAMES);
-
 		// do not analyze interfaces
 		if ((cn.access & Opcodes.ACC_INTERFACE) != 0) {
 			return;
 		}
-		
+
 		final boolean[] probes = getProbes(cn.name);
+		
 		if (probes == null) {
 			return;
 		}
 		
 		final DuaClassAnalyzer analyzer = new DuaClassAnalyzer(cn, probes, stringPool);
-
-//		if(cn.name.equals("org/apache/commons/math/stat/ranking/NaturalRanking")){
-//			for (int posMethod = 0; posMethod < cn.methods.size(); posMethod++) {
-//				MethodNode methodNode = cn.methods.get(posMethod);
-//				System.out.println(methodNode.name);
-//			}
-//		}
 
 		analyzer.analyze();
 		coverageVisitor.visitCoverage(analyzer.getCoverage());
