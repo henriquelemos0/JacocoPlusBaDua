@@ -15,3 +15,4 @@ jacoco.exec -> ExecutionDataStore -> ExecutionData -> Probes instead of probes, 
 
 Obs: BA-DUA only instrument class compiled with java 1.6 or newer
 
+[![Build Status](https://travis-ci.org/henriquelemos0/JacocoPlusBaDua.svg)](https://travis-ci.org/henriquelemos0/JacocoPlusBaDua)
