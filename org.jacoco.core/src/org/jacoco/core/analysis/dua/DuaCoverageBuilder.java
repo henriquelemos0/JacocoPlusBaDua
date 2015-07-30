@@ -16,25 +16,33 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-///**
-// * Builder for hierarchical {@link ICoverageNode} structures from single
-// * {@link IClassCoverage} nodes. The nodes are feed into the builder through its
-// * {@link ICoverageVisitor} interface. Afterwards the aggregated data can be
-// * obtained with {@link #getClasses()}, {@link #getSourceFiles()} or
-// * {@link #getBundle(String)} in the following hierarchy:
-// * 
-// * <pre>
-// * {@link IBundleCoverage}
-// * +-- {@link IPackageCoverage}*
-// *     +-- {@link IClassCoverage}*
-// *     +-- {@link ISourceFileCoverage}*
-// * </pre>
-// */
+import org.jacoco.core.analysis.IBundleCoverage;
+import org.jacoco.core.analysis.IClassCoverage;
+import org.jacoco.core.analysis.ICoverageNode;
+import org.jacoco.core.analysis.ICoverageVisitor;
+import org.jacoco.core.analysis.ISourceFileCoverage;
+import org.jacoco.core.internal.analysis.dua.BundleDuaCoverageImpl;
+import org.jacoco.core.internal.analysis.dua.SourceFileDuaCoverageImpl;
+
+/**
+ * Builder for hierarchical {@link ICoverageNode} structures from single
+ * {@link IClassCoverage} nodes. The nodes are feed into the builder through its
+ * {@link ICoverageVisitor} interface. Afterwards the aggregated data can be
+ * obtained with {@link #getClasses()}, {@link #getSourceFiles()} or
+ * {@link #getBundle(String)} in the following hierarchy:
+ * 
+ * <pre>
+ * {@link IBundleCoverage}
+ * +-- {@link IDuaPackageCoverage}*
+ *     +-- {@link IClassCoverage}*
+ *     +-- {@link ISourceFileCoverage}*
+ * </pre>
+ */
 public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 
 	private final Map<String, IDuaClassCoverage> classes;
 
-	// private final Map<String, ISourceFileCoverage> sourcefiles;
+	private final Map<String, IDuaSourceFileCoverage> sourcefiles;
 
 	/**
 	 * Create a new builder.
@@ -42,7 +50,7 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 	 */
 	public DuaCoverageBuilder() {
 		this.classes = new HashMap<String, IDuaClassCoverage>();
-		// this.sourcefiles = new HashMap<String, ISourceFileCoverage>();
+		 this.sourcefiles = new HashMap<String, IDuaSourceFileCoverage>();
 	}
 
 	/**
@@ -54,27 +62,27 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 		return Collections.unmodifiableCollection(classes.values());
 	}
 
-	//
-	// /**
-	// * Returns all source file nodes currently contained in this builder.
-	// *
-	// * @return all source file nodes
-	// */
-	// public Collection<ISourceFileCoverage> getSourceFiles() {
-	// return Collections.unmodifiableCollection(sourcefiles.values());
-	// }
 
-	// /**
-	// * Creates a bundle from all nodes currently contained in this bundle.
-	// *
-	// * @param name
-	// * Name of the bundle
-	// * @return bundle containing all classes and source files
-	// */
-	// public IBundleCoverage getBundle(final String name) {
-	// return new BundleCoverageImpl(name, classes.values(),
-	// sourcefiles.values());
-	// }
+	/**
+	 * Returns all source file nodes currently contained in this builder.
+	 *
+	 * @return all source file nodes
+	 */
+	public Collection<IDuaSourceFileCoverage> getSourceFiles() {
+		return Collections.unmodifiableCollection(sourcefiles.values());
+	}
+
+	/**
+	 * Creates a bundle from all nodes currently contained in this bundle.
+	 *
+	 * @param name
+	 * Name of the bundle
+	 * @return bundle containing all classes and source files
+	 */
+	public IBundleDuaCoverage getBundle(final String name) {
+		return new BundleDuaCoverageImpl(name, classes.values(),
+				sourcefiles.values());
+	}
 
 	public void visitCoverage(final IDuaClassCoverage coverage) {
 		// Only consider classes that contain at least one method:
@@ -85,25 +93,25 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 				throw new IllegalStateException(
 						"Can't add different class with same name: " + name);
 			}
-//			final String source = coverage.getSourceFileName();
-//			if (source != null) {
-//				final SourceFileCoverageImpl sourceFile = getSourceFile(source,
-//						coverage.getPackageName());
-//				sourceFile.increment(coverage);
-//			}
+			final String source = coverage.getSourceFileName();
+			if (source != null) {
+				final SourceFileDuaCoverageImpl sourceFile = getSourceFile(source,
+						coverage.getPackageName());
+				sourceFile.increment(coverage);
+			}
 		}
 	}
 
-	// private SourceFileCoverageImpl getSourceFile(final String filename,
-	// final String packagename) {
-	// final String key = packagename + '/' + filename;
-	// SourceFileCoverageImpl sourcefile = (SourceFileCoverageImpl) sourcefiles
-	// .get(key);
-	// if (sourcefile == null) {
-	// sourcefile = new SourceFileCoverageImpl(filename, packagename);
-	// sourcefiles.put(key, sourcefile);
-	// }
-	// return sourcefile;
-	// }
+	private SourceFileDuaCoverageImpl getSourceFile(final String filename,
+			final String packagename) {
+		final String key = packagename + '/' + filename;
+		SourceFileDuaCoverageImpl sourcefile = (SourceFileDuaCoverageImpl) sourcefiles
+				.get(key);
+		if (sourcefile == null) {
+			sourcefile = new SourceFileDuaCoverageImpl(filename, packagename);
+			sourcefiles.put(key, sourcefile);
+		}
+		return sourcefile;
+	}
 
 }

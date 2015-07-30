@@ -9,13 +9,19 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis.dua;
+package org.jacoco.core.internal.analysis.dua;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class DuaClassCoverage implements IDuaClassCoverage {
+import org.jacoco.core.analysis.ICounter;
+import org.jacoco.core.analysis.ILine;
+import org.jacoco.core.analysis.dua.ICoverageDua;
+import org.jacoco.core.analysis.dua.IDuaClassCoverage;
+import org.jacoco.core.analysis.dua.IDuaMethodCoverage;
+
+public class ClassDuaCoverageImpl implements IDuaClassCoverage {
 
 	private final long id;
 	private final String name;
@@ -25,7 +31,7 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 	private final Collection<IDuaMethodCoverage> methods;
 	private String sourceFileName;
 
-	public DuaClassCoverage(final String name, final long id, final String signature, final String superName,
+	public ClassDuaCoverageImpl(final String name, final long id, final String signature, final String superName,
 			final String[] interfaces) {
 		super();
 		this.id = id;
@@ -88,6 +94,51 @@ public class DuaClassCoverage implements IDuaClassCoverage {
 		return "DuaClassCoverage [id=" + id + ", name=" + name + ", signature=" + signature + ", superName="
 				+ superName + ", interfaces=" + Arrays.toString(interfaces) + ", methods=" + methods
 				+ ", sourceFileName=" + sourceFileName + "]";
+	}
+
+	public int getFirstLine() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getLastLine() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ILine getLine(int nr) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ElementType getElementType() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ICounter getDuaCounter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ICounter getMethodCounter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ICounter getClassCounter() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ICounter getCounter(CounterEntity entity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public ICoverageDua getPlainCopy() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

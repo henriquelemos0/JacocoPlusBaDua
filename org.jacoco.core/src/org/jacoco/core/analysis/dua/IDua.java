@@ -11,8 +11,6 @@
  *******************************************************************************/
 package org.jacoco.core.analysis.dua;
 
-import java.util.Set;
-
 import org.jacoco.core.analysis.ICounter;
 
 public interface IDua {

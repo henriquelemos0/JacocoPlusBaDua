@@ -19,7 +19,7 @@ import java.util.Collection;
  * 
  * @see IDuaMethodCoverage
  */
-public interface IDuaClassCoverage {
+public interface IDuaClassCoverage extends ISourceDua {
 
 	/**
 	 * Returns the identifier for this class which is the CRC64 signature of the

@@ -1,6 +1,5 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
-
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +9,24 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package br.usp.each.saeg.badua.core.internal.instr;
+package org.jacoco.core.analysis.dua;
 
-public interface IdGenerator {
+import java.util.Collection;
 
-	int nextId();
+import org.jacoco.core.analysis.IPackageCoverage;
+
+/**
+ * Coverage data of a bundle. A bundle groups a collection of packages.
+ * 
+ * @see IPackageCoverage
+ */
+public interface IBundleDuaCoverage extends ICoverageDua {
+
+	/**
+	 * Returns all packages contained in this bundle.
+	 * 
+	 * @return all packages
+	 */
+	public Collection<IDuaPackageCoverage> getPackages();
 
 }
