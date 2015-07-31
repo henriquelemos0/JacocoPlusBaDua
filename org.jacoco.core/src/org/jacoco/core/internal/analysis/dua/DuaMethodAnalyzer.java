@@ -32,6 +32,7 @@ import br.usp.each.saeg.asm.defuse.DepthFirstDefUseChainSearch;
 import br.usp.each.saeg.asm.defuse.Field;
 import br.usp.each.saeg.asm.defuse.Local;
 import br.usp.each.saeg.asm.defuse.Variable;
+import br.usp.each.saeg.commons.ArrayUtils;
 
 /**
  * A {@link MethodProbesVisitor} that analyzes which statements and branches of

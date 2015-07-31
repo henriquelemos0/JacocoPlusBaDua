@@ -13,6 +13,7 @@ package org.jacoco.core.internal.analysis.dua;
 
 import java.util.List;
 
+import org.jacoco.core.analysis.dua.DuaClassCoverage;
 import org.jacoco.core.analysis.dua.IDuaMethodCoverage;
 import org.jacoco.core.internal.analysis.StringPool;
 import org.objectweb.asm.Opcodes;
@@ -31,7 +32,7 @@ public class DuaClassAnalyzer {
 	private final StringPool stringPool;
 	private int methodProbeIndex = 0;
 
-	private final ClassDuaCoverageImpl coverage;
+	private final DuaClassCoverage coverage;
 
 	/**
 	 * Creates a new analyzer that builds coverage data for a class.
@@ -52,7 +53,7 @@ public class DuaClassAnalyzer {
 		this.probes = probes;
 		this.stringPool = stringPool;
 		final String[] interfaces = cn.interfaces.toArray(new String[cn.interfaces.size()]);
-		this.coverage = new ClassDuaCoverageImpl(stringPool.get(cn.name), classid, stringPool.get(cn.signature),
+		this.coverage = new DuaClassCoverage(stringPool.get(cn.name), classid, stringPool.get(cn.signature),
 				stringPool.get(cn.superName), stringPool.get(interfaces));
 		this.className=cn.name;
 
@@ -64,7 +65,7 @@ public class DuaClassAnalyzer {
 	 * 
 	 * @return coverage data for this class
 	 */
-	public ClassDuaCoverageImpl getCoverage() {
+	public DuaClassCoverage getCoverage() {
 		return coverage;
 	}
 

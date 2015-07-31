@@ -19,6 +19,7 @@ import org.jacoco.core.internal.analysis.dua.DuaClassAnalyzer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
+import org.objectweb.asm.tree.MethodNode;
 
 /**
  * An {@link DataflowAnalyzer} instance processes a set of Java class files and

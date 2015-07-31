@@ -61,7 +61,7 @@ public class CoverageTransformer implements ClassFileTransformer {
 			final AgentOptions options, final IExceptionLogger logger) {
 		dataflow = options.isDataflow();
 		if (dataflow) {
-			System.out.println("Instrumentation with BA-DUA using dependency");
+			System.out.println("Instrumentation with BA-DUA");
 			this.instrumenterdf = new br.usp.each.saeg.badua.core.instr.Instrumenter();
 		} else {
 			this.instrumenter = new Instrumenter(runtime);

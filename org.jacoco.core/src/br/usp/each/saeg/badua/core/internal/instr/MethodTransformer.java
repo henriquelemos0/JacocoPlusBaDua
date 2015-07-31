@@ -1,5 +1,6 @@
 /*******************************************************************************
  * Copyright (c) 2009, 2014 Mountainminds GmbH & Co. KG and Contributors
+
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,19 +10,26 @@
  *    Marc R. Hoffmann - initial API and implementation
  *    
  *******************************************************************************/
-package org.jacoco.core.analysis.dua;
+package br.usp.each.saeg.badua.core.internal.instr;
 
-/**
- * Coverage data of a single source file. The name of this node is the local
- * name of the source file.
- */
-public interface IDuaSourceFileCoverage extends ISourceDua {
+import org.objectweb.asm.tree.MethodNode;
 
-	/**
-	 * Returns the VM name of the package the source file belongs to.
-	 * 
-	 * @return package name
-	 */
-	public String getPackageName();
+public class MethodTransformer {
+
+	protected MethodTransformer mt;
+
+	public MethodTransformer() {
+		this.mt = null;
+	}
+
+	public MethodTransformer(final MethodTransformer mt) {
+		this.mt = mt;
+	}
+
+	public void transform(final MethodNode methodNode) {
+		if (mt != null) {
+			mt.transform(methodNode);
+		}
+	}
 
 }
