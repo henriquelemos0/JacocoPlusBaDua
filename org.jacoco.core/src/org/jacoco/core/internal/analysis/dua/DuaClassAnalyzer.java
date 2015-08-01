@@ -70,6 +70,8 @@ public class DuaClassAnalyzer {
 	}
 
 	public void analyze() {
+		System.out.println("DuaClassAnalyzer.analyze()");
+		
 		int methodId = 0;
 		for (final MethodNode method : methods) {
 			// Does not instrument:
@@ -99,6 +101,8 @@ public class DuaClassAnalyzer {
 	}
 
 	public void visitMethod(final MethodNode methodNode, final int methodId) {
+		System.out.println("DuaClassAnalyzer.visitMethod()");
+		
 		final DuaMethodAnalyzer methodAnalyzer = new DuaMethodAnalyzer(methodId, coverage.getName(), methodNode,
 				probes, methodProbeIndex);
 		methodAnalyzer.analyze();

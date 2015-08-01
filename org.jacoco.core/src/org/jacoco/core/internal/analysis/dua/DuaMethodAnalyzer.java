@@ -32,7 +32,6 @@ import br.usp.each.saeg.asm.defuse.DepthFirstDefUseChainSearch;
 import br.usp.each.saeg.asm.defuse.Field;
 import br.usp.each.saeg.asm.defuse.Local;
 import br.usp.each.saeg.asm.defuse.Variable;
-import br.usp.each.saeg.commons.ArrayUtils;
 
 /**
  * A {@link MethodProbesVisitor} that analyzes which statements and branches of
@@ -90,6 +89,7 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
+		System.out.println("DuaMethodAnalyzer.analyze()");
 		List<LocalVariableNode> localVariables = methodNode.localVariables;
 
 		//put in the hashmap the name of the source variables method
@@ -109,6 +109,13 @@ public class DuaMethodAnalyzer {
 					targetLines = lines[defUseChain.target];
 				}
 				String varName = getName(defUseChain);
+				if (varName == null){
+					System.out.println("varName == null");
+					varName = "varName_" + Math.random();
+				}else{
+					System.out.println("varName == " + varName);
+				}
+				
 				if(varName != null){ // ignoring case of duas created by the compiler
 					int status = getStatus(indexDua);
 					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
