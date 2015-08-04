@@ -35,9 +35,13 @@ public class DataflowExecutionData extends ExecutionData {
 
 	@Override
 	public boolean[] getProbes() {
+		if (getName().endsWith("AnnotationMapper")){
+			for (long l : longProbes) {
+				System.err.println("l=" + l);
+			}	
+		}
 		final boolean[] booleanProbes = new boolean[longProbes.length * 64];
-		final BitSetIterator it = new BitSetIterator(
-				BitSetUtils.valueOf(longProbes));
+		final BitSetIterator it = new BitSetIterator(BitSetUtils.valueOf(longProbes));
 		while (it.hasNext()) {
 			booleanProbes[it.next()] = true;
 		}

@@ -26,7 +26,6 @@ import org.objectweb.asm.tree.MethodNode;
 public class DuaClassAnalyzer {
 
 	private final long classid;
-	private final String className;
 	private final boolean probes[];
 	private final List<MethodNode> methods;
 	private final StringPool stringPool;
@@ -55,8 +54,6 @@ public class DuaClassAnalyzer {
 		final String[] interfaces = cn.interfaces.toArray(new String[cn.interfaces.size()]);
 		this.coverage = new DuaClassCoverage(stringPool.get(cn.name), classid, stringPool.get(cn.signature),
 				stringPool.get(cn.superName), stringPool.get(interfaces));
-		this.className=cn.name;
-
 	}
 
 	/**
@@ -77,15 +74,7 @@ public class DuaClassAnalyzer {
 			if ((method.access & Opcodes.ACC_ABSTRACT) != 0) {
 				continue;
 			}
-	        // 2. Interfaces
-			if ((method.access & Opcodes.ACC_INTERFACE) != 0) {
-				continue;
-			}
-	        // 3. Synthetic methods
-			if ((method.access & Opcodes.ACC_SYNTHETIC) != 0) {
-				continue;
-			}
-			// 4. Static class initialization
+			// 2. Static class initialization
 			if (method.name.equals("<clinit>")) {
 				continue;
 			}
@@ -99,8 +88,8 @@ public class DuaClassAnalyzer {
 	}
 
 	public void visitMethod(final MethodNode methodNode, final int methodId) {
-		final DuaMethodAnalyzer methodAnalyzer = new DuaMethodAnalyzer(methodId, coverage.getName(), methodNode,
-				probes, methodProbeIndex);
+		final DuaMethodAnalyzer methodAnalyzer = 
+				new DuaMethodAnalyzer(methodId, coverage.getName(), methodNode,	probes, methodProbeIndex);
 		methodAnalyzer.analyze();
 
 		final IDuaMethodCoverage methodCoverage = methodAnalyzer.getCoverage();

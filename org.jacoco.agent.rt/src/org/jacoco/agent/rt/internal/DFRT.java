@@ -29,6 +29,9 @@ public final class DFRT {
 	}
 
 	public static long[] getData(final String className, final int size) {
+		if (className.endsWith("AnnotationMapper")) {
+			System.out.println("SIZE = " + size);
+		}	
 		return DATA.getExecutionData((long) className.hashCode(), className,
 				size).getLongProbes();
 	}

@@ -54,56 +54,18 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 		return Collections.unmodifiableCollection(classes.values());
 	}
 
-	//
-	// /**
-	// * Returns all source file nodes currently contained in this builder.
-	// *
-	// * @return all source file nodes
-	// */
-	// public Collection<ISourceFileCoverage> getSourceFiles() {
-	// return Collections.unmodifiableCollection(sourcefiles.values());
-	// }
-
-	// /**
-	// * Creates a bundle from all nodes currently contained in this bundle.
-	// *
-	// * @param name
-	// * Name of the bundle
-	// * @return bundle containing all classes and source files
-	// */
-	// public IBundleCoverage getBundle(final String name) {
-	// return new BundleCoverageImpl(name, classes.values(),
-	// sourcefiles.values());
-	// }
-
 	public void visitCoverage(final IDuaClassCoverage coverage) {
+		System.out.println("DuaCoverageBuilder.visitCoverage");
 		// Only consider classes that contain at least one method:
 		if (coverage.getMethods().size() > 0) {
+			System.out.println("DuaCoverageBuilder.visitCoverage #methods > 0");
 			final String name = coverage.getName();
 			final IDuaClassCoverage dup = classes.put(name, coverage);
 			if (dup != null && dup.getId() != coverage.getId()) {
 				throw new IllegalStateException(
 						"Can't add different class with same name: " + name);
 			}
-//			final String source = coverage.getSourceFileName();
-//			if (source != null) {
-//				final SourceFileCoverageImpl sourceFile = getSourceFile(source,
-//						coverage.getPackageName());
-//				sourceFile.increment(coverage);
-//			}
 		}
 	}
-
-	// private SourceFileCoverageImpl getSourceFile(final String filename,
-	// final String packagename) {
-	// final String key = packagename + '/' + filename;
-	// SourceFileCoverageImpl sourcefile = (SourceFileCoverageImpl) sourcefiles
-	// .get(key);
-	// if (sourcefile == null) {
-	// sourcefile = new SourceFileCoverageImpl(filename, packagename);
-	// sourcefiles.put(key, sourcefile);
-	// }
-	// return sourcefile;
-	// }
 
 }

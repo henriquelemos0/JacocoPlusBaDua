@@ -11,9 +11,6 @@
  *******************************************************************************/
 package org.jacoco.core.internal.analysis.dua;
 
-import java.util.HashMap;
-import java.util.List;
-
 import org.jacoco.core.analysis.ICounter;
 import org.jacoco.core.analysis.dua.Dua;
 import org.jacoco.core.analysis.dua.DuaMethodCoverage;
@@ -32,7 +29,6 @@ import br.usp.each.saeg.asm.defuse.DepthFirstDefUseChainSearch;
 import br.usp.each.saeg.asm.defuse.Field;
 import br.usp.each.saeg.asm.defuse.Local;
 import br.usp.each.saeg.asm.defuse.Variable;
-import br.usp.each.saeg.commons.ArrayUtils;
 
 /**
  * A {@link MethodProbesVisitor} that analyzes which statements and branches of
@@ -46,7 +42,6 @@ public class DuaMethodAnalyzer {
 	private final String className;
 	private final int methodProbeIndex;
 	private final boolean[] probes;
-	private DefUseChain[] duaI;
 	private int[][] basicBlocks;
 	private int[] leaders;
 	private Variable[] variables;
@@ -90,14 +85,10 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
-		List<LocalVariableNode> localVariables = methodNode.localVariables;
-
-		//put in the hashmap the name of the source variables method
-		HashMap<Integer,String> variables = new HashMap<Integer,String>();
-		for(LocalVariableNode var: localVariables) variables.put(var.index,var.name);
-
+		System.out.println("DuaMethodAnalyzer.analyze");
+		
 		final int[] lines = getLines();
-		transform(methodNode);
+		DefUseChain[] duaI = getDuas(methodNode);
 		int indexDua = 0;
 		for (DefUseChain defUseChain : duaI) {
 			DefUseChain bbchain = toBB(defUseChain); // transform given defusechain to BasicBlock
@@ -109,6 +100,9 @@ public class DuaMethodAnalyzer {
 					targetLines = lines[defUseChain.target];
 				}
 				String varName = getName(defUseChain);
+				if (varName == null){
+					System.out.println("varName == Null");
+				}
 				if(varName != null){ // ignoring case of duas created by the compiler
 					int status = getStatus(indexDua);
 					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
@@ -176,7 +170,7 @@ public class DuaMethodAnalyzer {
 			if (local.index == index) {
 				final int start = mn.instructions.indexOf(local.start);
 				final int end = mn.instructions.indexOf(local.end);
-				if (insn + 1 >= start && insn + 1 <= end) {
+				if (insn >= start && insn < end) {
 					return local.name;
 				}
 			}
@@ -184,7 +178,7 @@ public class DuaMethodAnalyzer {
 		throw new RuntimeException("Variable not found");
 	}
 
-	private DefUseChain[] transform(final MethodNode methodNode) {
+	private DefUseChain[] getDuas(final MethodNode methodNode) {
 		final DefUseAnalyzer analyzer = new DefUseAnalyzer();
 		try {
 			analyzer.analyze(className, methodNode);
@@ -194,16 +188,12 @@ public class DuaMethodAnalyzer {
 
 		final DefUseFrame[] frames = analyzer.getDefUseFrames();
 		variables = analyzer.getVariables();
+		System.out.println(variables);
 		final int[][] successors = analyzer.getSuccessors();
 		final int[][] predecessors = analyzer.getPredecessors();
 		basicBlocks = analyzer.getBasicBlocks();
 		leaders = analyzer.getLeaders();
 		//defuse with instructions
-		duaI = new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors);
-		//defuse with basic blocks
-		final DefUseChain[] chains = DefUseChain.toBasicBlock(new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors), leaders,
-				basicBlocks);
-
-		return chains;
+		return new DepthFirstDefUseChainSearch().search(frames, variables, successors, predecessors);
 	}
 }
