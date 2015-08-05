@@ -92,7 +92,7 @@ public class Analyzer extends AbstractAnalyzer {
 	 */
 	@Override
 	public void analyzeClass(final ClassReader reader) {
-		System.out.println("analyzeClass");
+		//SYSO System.out.println("analyzeClass");
 		final ClassVisitor visitor = createAnalyzingVisitor(
 				CRC64.checksum(reader.b), reader.getClassName());
 		reader.accept(visitor, 0);

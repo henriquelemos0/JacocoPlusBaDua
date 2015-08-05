@@ -85,8 +85,8 @@ public class DuaMethodAnalyzer {
 	}
 
 	public void analyze() {
-		System.out.println("DuaMethodAnalyzer.analyze");
-		
+		//SYSO System.out.println("DuaMethodAnalyzer.analyze " + methodNode.name);
+		int count = 0;
 		final int[] lines = getLines();
 		DefUseChain[] duaI = getDuas(methodNode);
 		int indexDua = 0;
@@ -100,18 +100,21 @@ public class DuaMethodAnalyzer {
 					targetLines = lines[defUseChain.target];
 				}
 				String varName = getName(defUseChain);
-				if (varName == null){
-					System.out.println("varName == Null");
-				}
-				if(varName != null){ // ignoring case of duas created by the compiler
-					int status = getStatus(indexDua);
-					IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
-					coverage.addDua(dua);
-				}
-				indexDua++;
+				//SYSO System.out.println("DefUseChain[indexDua="+indexDua+",status="+probes[methodProbeIndex + indexDua]+",def="+defLine+",use="+useLine+",target="+targetLines+"]");
 				
+				if (varName == null){
+					count++;
+					varName = "random_" + Math.random();
+				}
+				
+				int status = getStatus(indexDua);
+				IDua dua = new Dua(defLine, useLine, targetLines, varName, status);
+				coverage.addDua(dua);
+				
+				indexDua++;
 			}
 		}
+		//SYSO System.out.println("total de duas = " + indexDua + " e count = " + count);
 	}
 
 	private DefUseChain toBB(DefUseChain c) {
@@ -159,6 +162,7 @@ public class DuaMethodAnalyzer {
 				name = varName(dua.use, ((Local) var).var, methodNode);
 			} catch (final Exception e) {
 				name = null;
+				//SYSO System.out.println("null name var with def at " + dua.def + " and use at " + dua.use);
 			}
 		}
 		
@@ -188,7 +192,6 @@ public class DuaMethodAnalyzer {
 
 		final DefUseFrame[] frames = analyzer.getDefUseFrames();
 		variables = analyzer.getVariables();
-		System.out.println(variables);
 		final int[][] successors = analyzer.getSuccessors();
 		final int[][] predecessors = analyzer.getPredecessors();
 		basicBlocks = analyzer.getBasicBlocks();

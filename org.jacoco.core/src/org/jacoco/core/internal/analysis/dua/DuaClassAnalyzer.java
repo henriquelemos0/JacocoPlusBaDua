@@ -67,6 +67,7 @@ public class DuaClassAnalyzer {
 	}
 
 	public void analyze() {
+		//SYSO System.out.println("DuaClassAnalyzer.analyze " + coverage.getName());
 		int methodId = 0;
 		for (final MethodNode method : methods) {
 			// Does not instrument:

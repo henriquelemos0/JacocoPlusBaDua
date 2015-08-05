@@ -55,10 +55,10 @@ public class DuaCoverageBuilder implements IDuaCoverageVisitor {
 	}
 
 	public void visitCoverage(final IDuaClassCoverage coverage) {
-		System.out.println("DuaCoverageBuilder.visitCoverage");
+		//SYSO System.out.println("DuaCoverageBuilder.visitCoverage");
 		// Only consider classes that contain at least one method:
 		if (coverage.getMethods().size() > 0) {
-			System.out.println("DuaCoverageBuilder.visitCoverage #methods > 0");
+			//SYSO System.out.println("DuaCoverageBuilder.visitCoverage #methods > 0");
 			final String name = coverage.getName();
 			final IDuaClassCoverage dup = classes.put(name, coverage);
 			if (dup != null && dup.getId() != coverage.getId()) {
